@@ -1,0 +1,161 @@
+- generic [ref=f1e2]:
+  - link "←Back home" [ref=f1e4] [cursor=pointer]:
+    - /url: /
+  - banner [ref=f1e5]:
+    - generic [ref=f1e6]: Projects · proof over claims
+    - heading "Selected systems, each runnable." [level=1] [ref=f1e7]
+    - paragraph [ref=f1e8]: Placeholder builds covering retrieval, agents, training, and full-stack delivery. Run the live pipeline, inspect a trace. Asterisked numbers are synthetic.
+    - navigation "Sections" [ref=f1e9]:
+      - link "Me" [ref=f1e10] [cursor=pointer]:
+        - /url: /me
+      - link "Projects" [ref=f1e16] [cursor=pointer]:
+        - /url: /projects
+      - link "Skills" [ref=f1e20] [cursor=pointer]:
+        - /url: /skills
+      - link "Fun" [ref=f1e25] [cursor=pointer]:
+        - /url: /fun
+      - link "Contact" [ref=f1e29] [cursor=pointer]:
+        - /url: /contact
+  - region "Projects" [ref=f1e35]:
+    - article [ref=f1e36]:
+      - generic [ref=f1e37]:
+        - heading "Atlas RAG — grounded answers over 12k docs" [level=3] [ref=f1e38]
+        - paragraph [ref=f1e39]: Hybrid retrieval, cross-encoder rerank, citation-forced generation. Eval harness tracks faithfulness and latency per deploy. Placeholder system — swap in your real retrieval stack and numbers.
+        - generic [ref=f1e40]: RAGEvalsNext.js + Python
+        - generic [ref=f1e41]:
+          - generic [ref=f1e42]:
+            - term [ref=f1e43]: Faithfulness
+            - definition [ref=f1e44]: 0.94*
+          - generic [ref=f1e45]:
+            - term [ref=f1e46]: p95 latency
+            - definition [ref=f1e47]: 1.8s*
+          - generic [ref=f1e48]:
+            - term [ref=f1e49]: Corpus
+            - definition [ref=f1e50]: 12.4k*
+        - generic "Evaluation status" [ref=f1e51]: evalsuite passing*
+        - generic [ref=f1e52]: Case study*Code*Live demo*
+      - generic "Live pipeline demonstration" [ref=f1e54]:
+        - generic [ref=f1e55]: Live system — Atlas RAG*run ai-2026-084
+        - generic [ref=f1e57]:
+          - 'img "RAG pipeline diagram: query, retrieve, rerank, generate" [ref=f1e58]':
+            - generic [ref=f1e60]:
+              - generic [ref=f1e61]: 01idle
+              - generic [ref=f1e62]: Query
+              - generic [ref=f1e63]: user_0142 · 38 tok
+            - generic [ref=f1e68]:
+              - generic [ref=f1e69]: 02idle
+              - generic [ref=f1e70]: Retrieve
+              - generic [ref=f1e71]: 8/120 chunks · 0.41s
+            - generic [ref=f1e76]:
+              - generic [ref=f1e77]: 03idle
+              - generic [ref=f1e78]: Rerank
+              - generic [ref=f1e79]: cross-enc · top 3
+            - generic [ref=f1e84]:
+              - generic [ref=f1e85]: 04idle
+              - generic [ref=f1e86]: Generate
+              - generic [ref=f1e87]: 412 tok · cited
+          - generic [ref=f1e88]:
+            - button "Run pipeline" [ref=f1e89]
+            - generic [ref=f1e90]:
+              - text: tokens
+              - strong [ref=f1e91]: "0"
+              - text: · latency
+              - strong [ref=f1e92]: —
+              - text: · grounded
+              - strong [ref=f1e93]: —
+          - generic [ref=f1e94]: › run ai-2026-084 · model placeholder-llm · temp 0.2
+        - generic [ref=f1e96]: "* synthetic demo datatrace below"
+    - article [ref=f1e97]:
+      - generic [ref=f1e98]:
+        - heading "Relay Agent — multi-step ops that ask before acting" [level=3] [ref=f1e99]
+        - paragraph [ref=f1e100]: "Tool-using agent for support ops: plans, calls 6 tools, pauses for approval on writes. Full trace per run, replayable. Placeholder — replace with your agent framework and guardrails."
+        - generic [ref=f1e101]: AgentsTool useTraces
+        - generic [ref=f1e102]:
+          - generic [ref=f1e103]:
+            - term [ref=f1e104]: Task success
+            - definition [ref=f1e105]: 87%*
+          - generic [ref=f1e106]:
+            - term [ref=f1e107]: Approval rate
+            - definition [ref=f1e108]: 100%
+          - generic [ref=f1e109]:
+            - term [ref=f1e110]: Tools
+            - definition [ref=f1e111]: "6"
+        - generic "Evaluation status" [ref=f1e112]: evalsuite passing*
+        - generic [ref=f1e113]: Case study*Code*Live demo*
+      - generic [ref=f1e114]:
+        - generic [aria-hidden] [ref=f1e115]:
+          - generic [ref=f1e116]:
+            - generic [ref=f1e117]: 81%
+            - text: plan → act → observe
+          - generic [ref=f1e118]:
+            - generic [ref=f1e119]: 100%
+            - text: approval gate on writes
+          - generic [ref=f1e120]:
+            - generic [ref=f1e121]: 95%
+            - text: audit trace export
+        - text: Placeholder — replace with real architecture
+    - article [ref=f1e122]:
+      - generic [ref=f1e123]:
+        - heading "Forge FT — fine-tune loop with honest evals" [level=3] [ref=f1e124]
+        - paragraph [ref=f1e125]: Dataset curation, LoRA fine-tune, ablation log, regression suite before any merge. Placeholder — drop in your base model, dataset size, and delta metrics.
+        - generic [ref=f1e126]: Fine-tuningDatasetsAblations
+        - generic [ref=f1e127]:
+          - generic [ref=f1e128]:
+            - term [ref=f1e129]: Eval delta
+            - definition [ref=f1e130]: +6.2*
+          - generic [ref=f1e131]:
+            - term [ref=f1e132]: Regressions
+            - definition [ref=f1e133]: "0"
+          - generic [ref=f1e134]:
+            - term [ref=f1e135]: Dataset
+            - definition [ref=f1e136]: 48k*
+        - generic "Evaluation status" [ref=f1e137]: evalsuite passing*
+        - generic [ref=f1e138]: Case study*Code*Live demo*
+      - generic [ref=f1e139]:
+        - generic [aria-hidden] [ref=f1e140]:
+          - generic [ref=f1e141]:
+            - generic [ref=f1e142]: 69%
+            - text: curate → train → ablate
+          - generic [ref=f1e143]:
+            - generic [ref=f1e144]: 97%
+            - text: regression suite × 214
+          - generic [ref=f1e145]:
+            - generic [ref=f1e146]: 100%
+            - text: merge only on green
+        - text: Placeholder — replace with real architecture
+    - article [ref=f1e147]:
+      - generic [ref=f1e148]:
+        - heading "Shipkit AI — ship LLM features without the invoice shock" [level=3] [ref=f1e149]
+        - paragraph [ref=f1e150]: Caching, routing between small/large models, streaming UI, cost guardrails. Full-stack reference build. Placeholder — replace with your production cost and latency wins.
+        - generic [ref=f1e151]: Full-stackCachingStreaming
+        - generic [ref=f1e152]:
+          - generic [ref=f1e153]:
+            - term [ref=f1e154]: Cost / 1k req
+            - definition [ref=f1e155]: "-63%*"
+          - generic [ref=f1e156]:
+            - term [ref=f1e157]: TTFT
+            - definition [ref=f1e158]: 0.4s*
+          - generic [ref=f1e159]:
+            - term [ref=f1e160]: Uptime
+            - definition [ref=f1e161]: 99.9*
+        - generic "Evaluation status" [ref=f1e162]: evalsuite passing*
+        - generic [ref=f1e163]: Case study*Code*Live demo*
+      - generic [ref=f1e164]:
+        - generic [aria-hidden] [ref=f1e165]:
+          - generic [ref=f1e166]:
+            - generic [ref=f1e167]: 83%
+            - text: route small → large
+          - generic [ref=f1e168]:
+            - generic [ref=f1e169]: 90%
+            - text: cache + stream
+          - generic [ref=f1e170]:
+            - generic [ref=f1e171]: 100%
+            - text: budget alarms
+        - text: Placeholder — replace with real architecture
+  - contentinfo [ref=f1e172]:
+    - generic [ref=f1e173]:
+      - text: © 2026 Your Name* · placeholder portfolio
+      - generic [ref=f1e174]:
+        - link "Home" [ref=f1e175] [cursor=pointer]:
+          - /url: /
+        - text: · Aurora field

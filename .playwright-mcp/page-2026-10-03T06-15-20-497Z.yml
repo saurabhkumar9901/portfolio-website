@@ -1,0 +1,71 @@
+- generic [ref=f8e2]:
+  - link "← Back home" [ref=f8e4] [cursor=pointer]:
+    - /url: /
+    - generic [ref=f8e5]: ←
+    - text: Back home
+  - banner [ref=f8e6]:
+    - generic [ref=f8e7]: Skills · three instruments
+    - heading "One developer, three instruments." [level=1] [ref=f8e9]
+    - paragraph [ref=f8e10]: What I actually do, the tools I reach for, and the production concern I never skip — verify against the projects.
+    - navigation "Sections" [ref=f8e11]:
+      - link "Me" [ref=f8e12] [cursor=pointer]:
+        - /url: /me
+      - link "Projects" [ref=f8e18] [cursor=pointer]:
+        - /url: /projects
+      - link "Skills" [ref=f8e22] [cursor=pointer]:
+        - /url: /skills
+      - link "Fun" [ref=f8e27] [cursor=pointer]:
+        - /url: /fun
+      - link "Contact" [ref=f8e31] [cursor=pointer]:
+        - /url: /contact
+  - region "Skills" [ref=f8e37]:
+    - generic [ref=f8e38]:
+      - generic [ref=f8e39]:
+        - generic [ref=f8e40]:
+          - generic [ref=f8e41]: Instrument 1
+          - heading "LLM Engineering" [level=3] [ref=f8e42]
+          - paragraph [ref=f8e43]: RAG, agents, evals, guardrails.
+        - generic [ref=f8e44]:
+          - generic [ref=f8e45]: Reaches for
+          - list [ref=f8e46]:
+            - listitem [ref=f8e47]: Retrieval + rerank + citation loops
+            - listitem [ref=f8e48]: Tool-using agents with approval gates
+            - listitem [ref=f8e49]: Faithfulness, latency, cost suites
+        - generic [ref=f8e50]:
+          - generic [ref=f8e51]: Never ships without
+          - paragraph [ref=f8e52]: Trace per run, regression suite green, grounded answers or explicit abstain.
+      - generic [ref=f8e53]:
+        - generic [ref=f8e54]:
+          - generic [ref=f8e55]: Instrument 2
+          - heading "ML & Training" [level=3] [ref=f8e56]
+          - paragraph [ref=f8e57]: Data, fine-tunes, ablations.
+        - generic [ref=f8e58]:
+          - generic [ref=f8e59]: Reaches for
+          - list [ref=f8e60]:
+            - listitem [ref=f8e61]: Dataset curation + dedup + labeling
+            - listitem [ref=f8e62]: LoRA / full fine-tunes, ablations
+            - listitem [ref=f8e63]: Benchmark deltas, error analysis
+        - generic [ref=f8e64]:
+          - generic [ref=f8e65]: Never ships without
+          - paragraph [ref=f8e66]: Baseline comparison, held-out evals, and a written note on what got worse.
+      - generic [ref=f8e67]:
+        - generic [ref=f8e68]:
+          - generic [ref=f8e69]: Instrument 3
+          - heading "Full-stack Delivery" [level=3] [ref=f8e70]
+          - paragraph [ref=f8e71]: Next.js + Python APIs in prod.
+        - generic [ref=f8e72]:
+          - generic [ref=f8e73]: Reaches for
+          - list [ref=f8e74]:
+            - listitem [ref=f8e75]: Next.js App Router, streaming UI
+            - listitem [ref=f8e76]: FastAPI / queues / vector stores
+            - listitem [ref=f8e77]: Cache, routing, budget alarms
+        - generic [ref=f8e78]:
+          - generic [ref=f8e79]: Never ships without
+          - paragraph [ref=f8e80]: Auth, rate limits, cost dashboard, and a rollback plan.
+  - contentinfo [ref=f8e81]:
+    - generic [ref=f8e82]:
+      - generic [ref=f8e83]: © 2026 Your Name* · placeholder portfolio
+      - generic [ref=f8e84]:
+        - link "Home" [ref=f8e85] [cursor=pointer]:
+          - /url: /
+        - text: · Aurora field

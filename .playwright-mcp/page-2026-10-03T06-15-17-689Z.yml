@@ -1,0 +1,71 @@
+- generic [ref=f6e2]:
+  - link "← Back home" [ref=f6e4] [cursor=pointer]:
+    - /url: /
+    - generic [ref=f6e5]: ←
+    - text: Back home
+  - banner [ref=f6e6]:
+    - generic [ref=f6e7]: Me · the human
+    - heading "Hey, I'm Your Name." [level=1] [ref=f6e9]
+    - paragraph [ref=f6e10]: Placeholder bio — an AI developer covering training-to-product. Replace with your story, your photo, and the two sentences people quote back to you.
+    - navigation "Sections" [ref=f6e11]:
+      - link "Me" [ref=f6e12] [cursor=pointer]:
+        - /url: /me
+      - link "Projects" [ref=f6e18] [cursor=pointer]:
+        - /url: /projects
+      - link "Skills" [ref=f6e22] [cursor=pointer]:
+        - /url: /skills
+      - link "Fun" [ref=f6e27] [cursor=pointer]:
+        - /url: /fun
+      - link "Contact" [ref=f6e31] [cursor=pointer]:
+        - /url: /contact
+  - region "About" [ref=f6e37]:
+    - img "Placeholder avatar — replace with your memoji at public/avatar.png" [ref=f6e40]
+    - generic [ref=f6e52]:
+      - generic [ref=f6e53]:
+        - generic [ref=f6e54]: Currently*
+        - heading "AI Engineer, placeholder role" [level=3] [ref=f6e55]
+        - paragraph [ref=f6e56]: Own RAG + agent stack, eval gate on every deploy.
+      - generic [ref=f6e57]:
+        - generic [ref=f6e58]: Before*
+        - paragraph [ref=f6e59]: "Shipped LLM features to prod: retrieval quality, streaming UX, cost routing. Replace with your history."
+      - generic [ref=f6e60]:
+        - generic [ref=f6e61]: Fast facts*
+        - paragraph [ref=f6e62]:
+          - generic [ref=f6e63]:
+            - strong [ref=f6e64]: "Based*:"
+            - text: Your city · open to remote
+          - generic [ref=f6e65]:
+            - strong [ref=f6e66]: "Focus:"
+            - text: LLM apps → prod
+          - generic [ref=f6e67]:
+            - strong [ref=f6e68]: "Proof:"
+            - text: 4 systems · traces
+          - generic [ref=f6e69]:
+            - strong [ref=f6e70]: "Elsewhere*:"
+            - text: GitHub · LinkedIn
+  - region "Timeline" [ref=f6e71]:
+    - generic [ref=f6e72]:
+      - heading "Build log." [level=2] [ref=f6e73]
+      - paragraph [ref=f6e74]: Placeholder timeline — replace rows with your roles and ships.
+    - generic [ref=f6e75]:
+      - generic [ref=f6e76]:
+        - time [ref=f6e77]: 2026 — now
+        - paragraph [ref=f6e78]:
+          - strong [ref=f6e79]: Placeholder role — AI Engineer.
+          - text: Own RAG + agent stack, eval gate on every deploy. Replace with employer, scope, and one measured win.
+        - generic [aria-hidden] [ref=f6e80]: →
+      - generic [ref=f6e81]:
+        - time [ref=f6e82]: 2024 — 2025
+        - paragraph [ref=f6e83]: Placeholder — shipped 3 LLM features to prod. Retrieval quality, streaming UX, cost routing. Replace with links and traces.
+        - generic [aria-hidden] [ref=f6e84]: →
+      - generic [ref=f6e85]:
+        - time [ref=f6e86]: 2023 — 2024
+        - paragraph [ref=f6e87]: Placeholder — ML foundations. Training, datasets, evals. Replace with courses, papers, or models.
+        - generic [aria-hidden] [ref=f6e88]: →
+  - contentinfo [ref=f6e89]:
+    - generic [ref=f6e90]:
+      - generic [ref=f6e91]: © 2026 Your Name* · placeholder portfolio
+      - generic [ref=f6e92]:
+        - link "Home" [ref=f6e93] [cursor=pointer]:
+          - /url: /
+        - text: · Aurora field

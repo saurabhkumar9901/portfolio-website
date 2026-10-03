@@ -1,0 +1,59 @@
+- generic [ref=f10e2]:
+  - link "← Back home" [ref=f10e4] [cursor=pointer]:
+    - /url: /
+    - generic [ref=f10e5]: ←
+    - text: Back home
+  - banner [ref=f10e6]:
+    - generic [ref=f10e7]: Contact · replies within 48h*
+    - heading "Send a spec, get a system." [level=1] [ref=f10e9]
+    - paragraph [ref=f10e10]: Placeholder contact block — swap in your email, calendar, GitHub, and LinkedIn. One clear next step, always one click away.
+    - navigation "Sections" [ref=f10e11]:
+      - link "Me" [ref=f10e12] [cursor=pointer]:
+        - /url: /me
+      - link "Projects" [ref=f10e18] [cursor=pointer]:
+        - /url: /projects
+      - link "Skills" [ref=f10e22] [cursor=pointer]:
+        - /url: /skills
+      - link "Fun" [ref=f10e27] [cursor=pointer]:
+        - /url: /fun
+      - link "Contact" [ref=f10e31] [cursor=pointer]:
+        - /url: /contact
+  - region "Contact" [ref=f10e37]:
+    - generic [ref=f10e38]:
+      - generic [ref=f10e39]:
+        - heading "Hiring or building? Start with one paragraph." [level=3] [ref=f10e40]
+        - paragraph [ref=f10e41]: Tell me the problem, the data you have, and what good looks like. I reply with a plan, a fixed scope, and what I would measure — or a polite no with a pointer.
+        - generic [ref=f10e42]:
+          - generic [ref=f10e43]: Full-time
+          - generic [ref=f10e44]: Freelance
+          - generic [ref=f10e45]: Advisory
+      - generic [ref=f10e46]:
+        - generic [ref=f10e47]:
+          - link "hello@yourname.dev ↗" [ref=f10e48] [cursor=pointer]:
+            - /url: mailto:hello@yourname.dev
+            - generic [ref=f10e49]: hello@yourname.dev
+            - generic [ref=f10e50]: ↗
+          - link "Book a 25-min call* ↗" [ref=f10e51] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=f10e52]: Book a 25-min call*
+            - generic [ref=f10e53]: ↗
+          - link "GitHub — @yourhandle* ↗" [ref=f10e54] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=f10e55]: GitHub — @yourhandle*
+            - generic [ref=f10e56]: ↗
+          - link "LinkedIn — /in/yourname* ↗" [ref=f10e57] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=f10e58]: LinkedIn — /in/yourname*
+            - generic [ref=f10e59]: ↗
+          - link "Resume PDF* ↗" [ref=f10e60] [cursor=pointer]:
+            - /url: /contact
+            - generic [ref=f10e61]: Resume PDF*
+            - generic [ref=f10e62]: ↗
+        - paragraph [ref=f10e63]: "* Placeholder links — wire to real URLs before shipping."
+  - contentinfo [ref=f10e64]:
+    - generic [ref=f10e65]:
+      - generic [ref=f10e66]: © 2026 Your Name* · placeholder portfolio
+      - generic [ref=f10e67]:
+        - link "Home" [ref=f10e68] [cursor=pointer]:
+          - /url: /
+        - text: · Aurora field

@@ -1,0 +1,33 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - link "B Build your AI portfolio" [ref=f1e4] [cursor=pointer]:
+      - /url: /contact
+      - generic [ref=f1e5]: B
+      - text: Build your AI portfolio
+      - generic [aria-hidden] [ref=f1e6]: ›
+    - banner [ref=f1e7]:
+      - generic [ref=f1e8]: Available — 2026 · placeholder content
+      - heading "Hey, I'm Your Name" [level=1] [ref=f1e10]
+      - generic [ref=f1e12]: AI Engineer
+      - paragraph [ref=f1e13]: I build retrieval systems, agents, and evals, then ship them as production web apps. Every claim is a runnable system with traces. Replace this copy with your story.
+      - img "Placeholder avatar — replace with your memoji at public/avatar.png" [ref=f1e15]
+      - search "Ask me anything" [ref=f1e27]:
+        - textbox "Ask me anything" [ref=f1e28]:
+          - /placeholder: Ask me anything…
+        - button "Send question" [ref=f1e29] [cursor=pointer]
+      - navigation "Sections" [ref=f1e32]:
+        - link "Me" [ref=f1e33] [cursor=pointer]:
+          - /url: /me
+        - link "Projects" [ref=f1e39] [cursor=pointer]:
+          - /url: /projects
+        - link "Skills" [ref=f1e43] [cursor=pointer]:
+          - /url: /skills
+        - link "Fun" [ref=f1e48] [cursor=pointer]:
+          - /url: /fun
+        - link "Contact" [ref=f1e52] [cursor=pointer]:
+          - /url: /contact
+    - contentinfo [ref=f1e58]:
+      - generic [ref=f1e59]:
+        - generic [ref=f1e60]: © 2026 Your Name* · placeholder portfolio
+        - generic [ref=f1e61]: Aurora field · ask pill is placeholder logic
+  - alert [ref=f1e62]

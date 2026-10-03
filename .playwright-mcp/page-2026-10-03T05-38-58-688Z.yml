@@ -1,0 +1,32 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e39]:
+      - button "Fastfolio Build your AI portfolio" [ref=e40] [cursor=pointer]:
+        - img "Fastfolio" [ref=e41]
+        - generic [ref=e42]: Build your AI portfolio
+      - generic [ref=e47] [cursor=pointer]
+      - generic [ref=e51]:
+        - generic [ref=e54] [cursor=pointer]
+        - paragraph [ref=e62]: What are your projects? What are you working on right now?
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - button "Hide quick questions" [ref=e77]
+            - generic [ref=e81]:
+              - button "Me" [ref=e82] [cursor=pointer]
+              - button "Projects" [ref=e85] [cursor=pointer]
+              - button "Skills" [ref=e88] [cursor=pointer]
+              - button "Fun" [ref=e91] [cursor=pointer]
+              - button "Contact" [ref=e94] [cursor=pointer]
+              - button [ref=e97]:
+                - generic [ref=e98] [cursor=pointer]
+          - generic [ref=e104]:
+            - textbox "Ask me anything" [disabled] [ref=e105]
+            - button [disabled] [ref=e106]
+        - link "Powered by Fastfolio Fastfolio" [ref=e109] [cursor=pointer]:
+          - /url: https://fastfol.io?utm_source=toukoum_portfolio&utm_medium=powered_by&utm_campaign=portfolio_conversion
+          - generic [ref=e110]: Powered by
+          - img "Fastfolio" [ref=e111]
+          - generic [ref=e112]: Fastfolio
+  - region "Notifications alt+T"
+  - alert [ref=e38]

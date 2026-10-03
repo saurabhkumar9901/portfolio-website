@@ -1,0 +1,325 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - link "B Build your AI portfolio" [ref=f2e4] [cursor=pointer]:
+      - /url: "#contact"
+      - generic [ref=f2e5]: B
+      - text: Build your AI portfolio
+      - generic [aria-hidden] [ref=f2e6]: ›
+    - banner [ref=f2e7]:
+      - generic [ref=f2e8]: Available — 2026 · placeholder content
+      - heading "Hey, I'm Your Name" [level=1] [ref=f2e10]
+      - generic [ref=f2e12]: AI Engineer
+      - paragraph [ref=f2e13]: I build retrieval systems, agents, and evals, then ship them as production web apps. Every claim below is a runnable system with traces. Replace this copy with your story.
+      - img "Placeholder avatar — replace with your memoji at public/avatar.png" [ref=f2e15]
+      - search "Ask me anything" [ref=f2e27]:
+        - textbox "Ask me anything" [ref=f2e28]:
+          - /placeholder: Ask me anything…
+        - button "Send question" [ref=f2e29] [cursor=pointer]
+      - navigation "Sections" [ref=f2e32]:
+        - link "Me" [ref=f2e33] [cursor=pointer]:
+          - /url: "#top"
+        - link "Projects" [ref=f2e39] [cursor=pointer]:
+          - /url: "#systems"
+        - link "Skills" [ref=f2e43] [cursor=pointer]:
+          - /url: "#capabilities"
+        - link "Fun" [ref=f2e48] [cursor=pointer]:
+          - /url: "#log"
+        - link "Contact" [ref=f2e52] [cursor=pointer]:
+          - /url: "#contact"
+    - region [ref=f2e58]:
+      - generic [ref=f2e59]:
+        - heading "Selected systems, each runnable." [level=2] [ref=f2e60]
+        - paragraph [ref=f2e61]: Four placeholder builds covering retrieval, agents, training, and full-stack delivery. Run the live pipeline, inspect a trace, then read a system. Asterisked numbers are synthetic — replace with measured results.
+        - generic [ref=f2e62]: 4 systems · traces included
+      - article [ref=f2e63]:
+        - generic [ref=f2e64]:
+          - heading "Atlas RAG — grounded answers over 12k docs" [level=3] [ref=f2e65]
+          - paragraph [ref=f2e66]: Hybrid retrieval, cross-encoder rerank, citation-forced generation. Eval harness tracks faithfulness and latency per deploy. Placeholder system — swap in your real retrieval stack and numbers.
+          - generic [ref=f2e67]:
+            - generic [ref=f2e68]: RAG
+            - generic [ref=f2e69]: Evals
+            - generic [ref=f2e70]: Next.js + Python
+          - generic [ref=f2e71]:
+            - generic [ref=f2e72]:
+              - term [ref=f2e73]: Faithfulness
+              - definition [ref=f2e74]: 0.94*
+            - generic [ref=f2e75]:
+              - term [ref=f2e76]: p95 latency
+              - definition [ref=f2e77]: 1.8s*
+            - generic [ref=f2e78]:
+              - term [ref=f2e79]: Corpus
+              - definition [ref=f2e80]: 12.4k*
+          - generic "Evaluation status" [ref=f2e81]:
+            - text: eval
+            - generic [ref=f2e85]: suite passing*
+          - generic [ref=f2e86]:
+            - generic "Placeholder — add case-study link" [ref=f2e87]: Case study*
+            - generic "Placeholder — add code link" [ref=f2e88]: Code*
+            - generic "Placeholder — add demo link" [ref=f2e89]: Live demo*
+        - generic "Live pipeline demonstration" [ref=f2e91]:
+          - generic [ref=f2e92]:
+            - generic [ref=f2e94]: Live system — Atlas RAG*
+            - generic [ref=f2e95]: run ai-2026-084
+          - generic [ref=f2e97]:
+            - 'img "RAG pipeline diagram: query, retrieve, rerank, generate" [ref=f2e98]':
+              - generic [ref=f2e100]:
+                - generic [ref=f2e101]:
+                  - generic [ref=f2e102]: "01"
+                  - generic [ref=f2e103]: live
+                - generic [ref=f2e104]: Query
+                - generic [ref=f2e105]: user_0142 · 38 tok
+              - generic [ref=f2e110]:
+                - generic [ref=f2e111]:
+                  - generic [ref=f2e112]: "02"
+                  - generic [ref=f2e113]: idle
+                - generic [ref=f2e114]: Retrieve
+                - generic [ref=f2e115]: 8/120 chunks · 0.41s
+              - generic [ref=f2e120]:
+                - generic [ref=f2e121]:
+                  - generic [ref=f2e122]: "03"
+                  - generic [ref=f2e123]: idle
+                - generic [ref=f2e124]: Rerank
+                - generic [ref=f2e125]: cross-enc · top 3
+              - generic [ref=f2e130]:
+                - generic [ref=f2e131]:
+                  - generic [ref=f2e132]: "04"
+                  - generic [ref=f2e133]: idle
+                - generic [ref=f2e134]: Generate
+                - generic [ref=f2e135]: 412 tok · cited
+            - generic [ref=f2e136]:
+              - button "Running…" [disabled] [ref=f2e137]
+              - generic [ref=f2e138]:
+                - text: tokens
+                - strong [ref=f2e139]: "0"
+                - text: · latency
+                - strong [ref=f2e140]: —
+                - text: · grounded
+                - strong [ref=f2e141]: —
+            - generic [ref=f2e142]: › run ai-2026-084 · model placeholder-llm · temp 0.2
+          - generic [ref=f2e144]:
+            - generic [ref=f2e145]: "* synthetic demo data"
+            - generic [ref=f2e146]: trace below
+      - article [ref=f2e147]:
+        - generic [ref=f2e148]:
+          - heading "Relay Agent — multi-step ops that ask before acting" [level=3] [ref=f2e149]
+          - paragraph [ref=f2e150]: "Tool-using agent for support ops: plans, calls 6 tools, pauses for approval on writes. Full trace per run, replayable. Placeholder — replace with your agent framework and guardrails."
+          - generic [ref=f2e151]:
+            - generic [ref=f2e152]: Agents
+            - generic [ref=f2e153]: Tool use
+            - generic [ref=f2e154]: Traces
+          - generic [ref=f2e155]:
+            - generic [ref=f2e156]:
+              - term [ref=f2e157]: Task success
+              - definition [ref=f2e158]: 87%*
+            - generic [ref=f2e159]:
+              - term [ref=f2e160]: Approval rate
+              - definition [ref=f2e161]: 100%
+            - generic [ref=f2e162]:
+              - term [ref=f2e163]: Tools
+              - definition [ref=f2e164]: "6"
+          - generic "Evaluation status" [ref=f2e165]:
+            - text: eval
+            - generic [ref=f2e169]: suite passing*
+          - generic [ref=f2e170]:
+            - generic "Placeholder — add case-study link" [ref=f2e171]: Case study*
+            - generic "Placeholder — add code link" [ref=f2e172]: Code*
+            - generic "Placeholder — add demo link" [ref=f2e173]: Live demo*
+        - generic [ref=f2e174]:
+          - generic [aria-hidden] [ref=f2e175]:
+            - generic [ref=f2e176]:
+              - generic [ref=f2e177]: 81%
+              - generic [ref=f2e180]: plan → act → observe
+            - generic [ref=f2e181]:
+              - generic [ref=f2e182]: 100%
+              - generic [ref=f2e185]: approval gate on writes
+            - generic [ref=f2e186]:
+              - generic [ref=f2e187]: 95%
+              - generic [ref=f2e190]: audit trace export
+          - generic [ref=f2e191]: Placeholder — replace with real architecture
+      - article [ref=f2e192]:
+        - generic [ref=f2e193]:
+          - heading "Forge FT — fine-tune loop with honest evals" [level=3] [ref=f2e194]
+          - paragraph [ref=f2e195]: Dataset curation, LoRA fine-tune, ablation log, regression suite before any merge. Placeholder — drop in your base model, dataset size, and delta metrics.
+          - generic [ref=f2e196]:
+            - generic [ref=f2e197]: Fine-tuning
+            - generic [ref=f2e198]: Datasets
+            - generic [ref=f2e199]: Ablations
+          - generic [ref=f2e200]:
+            - generic [ref=f2e201]:
+              - term [ref=f2e202]: Eval delta
+              - definition [ref=f2e203]: +6.2*
+            - generic [ref=f2e204]:
+              - term [ref=f2e205]: Regressions
+              - definition [ref=f2e206]: "0"
+            - generic [ref=f2e207]:
+              - term [ref=f2e208]: Dataset
+              - definition [ref=f2e209]: 48k*
+          - generic "Evaluation status" [ref=f2e210]:
+            - text: eval
+            - generic [ref=f2e214]: suite passing*
+          - generic [ref=f2e215]:
+            - generic "Placeholder — add case-study link" [ref=f2e216]: Case study*
+            - generic "Placeholder — add code link" [ref=f2e217]: Code*
+            - generic "Placeholder — add demo link" [ref=f2e218]: Live demo*
+        - generic [ref=f2e219]:
+          - generic [aria-hidden] [ref=f2e220]:
+            - generic [ref=f2e221]:
+              - generic [ref=f2e222]: 69%
+              - generic [ref=f2e225]: curate → train → ablate
+            - generic [ref=f2e226]:
+              - generic [ref=f2e227]: 97%
+              - generic [ref=f2e230]: regression suite × 214
+            - generic [ref=f2e231]:
+              - generic [ref=f2e232]: 100%
+              - generic [ref=f2e235]: merge only on green
+          - generic [ref=f2e236]: Placeholder — replace with real architecture
+      - article [ref=f2e237]:
+        - generic [ref=f2e238]:
+          - heading "Shipkit AI — ship LLM features without the invoice shock" [level=3] [ref=f2e239]
+          - paragraph [ref=f2e240]: Caching, routing between small/large models, streaming UI, cost guardrails. Full-stack reference build. Placeholder — replace with your production cost and latency wins.
+          - generic [ref=f2e241]:
+            - generic [ref=f2e242]: Full-stack
+            - generic [ref=f2e243]: Caching
+            - generic [ref=f2e244]: Streaming
+          - generic [ref=f2e245]:
+            - generic [ref=f2e246]:
+              - term [ref=f2e247]: Cost / 1k req
+              - definition [ref=f2e248]: "-63%*"
+            - generic [ref=f2e249]:
+              - term [ref=f2e250]: TTFT
+              - definition [ref=f2e251]: 0.4s*
+            - generic [ref=f2e252]:
+              - term [ref=f2e253]: Uptime
+              - definition [ref=f2e254]: 99.9*
+          - generic "Evaluation status" [ref=f2e255]:
+            - text: eval
+            - generic [ref=f2e259]: suite passing*
+          - generic [ref=f2e260]:
+            - generic "Placeholder — add case-study link" [ref=f2e261]: Case study*
+            - generic "Placeholder — add code link" [ref=f2e262]: Code*
+            - generic "Placeholder — add demo link" [ref=f2e263]: Live demo*
+        - generic [ref=f2e264]:
+          - generic [aria-hidden] [ref=f2e265]:
+            - generic [ref=f2e266]:
+              - generic [ref=f2e267]: 83%
+              - generic [ref=f2e270]: route small → large
+            - generic [ref=f2e271]:
+              - generic [ref=f2e272]: 90%
+              - generic [ref=f2e275]: cache + stream
+            - generic [ref=f2e276]:
+              - generic [ref=f2e277]: 100%
+              - generic [ref=f2e280]: budget alarms
+          - generic [ref=f2e281]: Placeholder — replace with real architecture
+    - region [ref=f2e282]:
+      - generic [ref=f2e283]:
+        - heading "One developer, three instruments." [level=2] [ref=f2e284]
+        - paragraph [ref=f2e285]: What I actually do, the tools I reach for, and the production concern I never skip — a spec shelf you can verify against the systems above.
+        - generic [ref=f2e286]: Spec shelf · rev B
+      - generic [ref=f2e287]:
+        - generic [ref=f2e288]:
+          - generic [ref=f2e289]:
+            - generic [ref=f2e290]: Instrument 1
+            - heading "LLM Engineering" [level=3] [ref=f2e291]
+            - paragraph [ref=f2e292]: RAG, agents, evals, guardrails.
+          - generic [ref=f2e293]:
+            - generic [ref=f2e294]: Reaches for
+            - list [ref=f2e295]:
+              - listitem [ref=f2e296]: Retrieval + rerank + citation loops
+              - listitem [ref=f2e297]: Tool-using agents with approval gates
+              - listitem [ref=f2e298]: Faithfulness, latency, cost suites
+          - generic [ref=f2e299]:
+            - generic [ref=f2e300]: Never ships without
+            - paragraph [ref=f2e301]: Trace per run, regression suite green, grounded answers or explicit abstain.
+        - generic [ref=f2e302]:
+          - generic [ref=f2e303]:
+            - generic [ref=f2e304]: Instrument 2
+            - heading "ML & Training" [level=3] [ref=f2e305]
+            - paragraph [ref=f2e306]: Data, fine-tunes, ablations.
+          - generic [ref=f2e307]:
+            - generic [ref=f2e308]: Reaches for
+            - list [ref=f2e309]:
+              - listitem [ref=f2e310]: Dataset curation + dedup + labeling
+              - listitem [ref=f2e311]: LoRA / full fine-tunes, ablations
+              - listitem [ref=f2e312]: Benchmark deltas, error analysis
+          - generic [ref=f2e313]:
+            - generic [ref=f2e314]: Never ships without
+            - paragraph [ref=f2e315]: Baseline comparison, held-out evals, and a written note on what got worse.
+        - generic [ref=f2e316]:
+          - generic [ref=f2e317]:
+            - generic [ref=f2e318]: Instrument 3
+            - heading "Full-stack Delivery" [level=3] [ref=f2e319]
+            - paragraph [ref=f2e320]: Next.js + Python APIs in prod.
+          - generic [ref=f2e321]:
+            - generic [ref=f2e322]: Reaches for
+            - list [ref=f2e323]:
+              - listitem [ref=f2e324]: Next.js App Router, streaming UI
+              - listitem [ref=f2e325]: FastAPI / queues / vector stores
+              - listitem [ref=f2e326]: Cache, routing, budget alarms
+          - generic [ref=f2e327]:
+            - generic [ref=f2e328]: Never ships without
+            - paragraph [ref=f2e329]: Auth, rate limits, cost dashboard, and a rollback plan.
+    - region [ref=f2e330]:
+      - generic [ref=f2e331]:
+        - heading "Build log — and the human behind it." [level=2] [ref=f2e332]
+        - paragraph [ref=f2e333]: Placeholder timeline — replace rows with your roles, ships, and one fun fact that makes you memorable.
+        - generic [ref=f2e334]: 2023 → 2026 · placeholders
+      - generic [ref=f2e335]:
+        - generic [ref=f2e336]:
+          - time [ref=f2e337]: 2026 — now
+          - paragraph [ref=f2e338]:
+            - strong [ref=f2e339]: Placeholder role — AI Engineer.
+            - text: Own RAG + agent stack, eval gate on every deploy. Replace with employer, scope, and one measured win.
+          - generic [aria-hidden] [ref=f2e340]: →
+        - generic [ref=f2e341]:
+          - time [ref=f2e342]: 2024 — 2025
+          - paragraph [ref=f2e343]:
+            - strong [ref=f2e344]: Placeholder — shipped 3 LLM features to prod.
+            - text: Retrieval quality, streaming UX, cost routing. Replace with links and traces.
+          - generic [aria-hidden] [ref=f2e345]: →
+        - generic [ref=f2e346]:
+          - time [ref=f2e347]: Fun fact*
+          - paragraph [ref=f2e348]:
+            - strong [ref=f2e349]: Placeholder — evals prompts for fun.
+            - text: Replace with your real hobby, talk, or side quest.
+          - generic [aria-hidden] [ref=f2e350]: →
+    - region [ref=f2e351]:
+      - generic [ref=f2e352]:
+        - heading "Send a spec, get a system." [level=2] [ref=f2e353]
+        - paragraph [ref=f2e354]: Placeholder contact block — swap in your email, calendar, GitHub, and LinkedIn. One clear next step, always one click away.
+        - generic [ref=f2e355]: Replies within 48h*
+      - generic [ref=f2e356]:
+        - generic [ref=f2e357]:
+          - heading "Hiring or building? Start with one paragraph." [level=3] [ref=f2e358]
+          - paragraph [ref=f2e359]: Tell me the problem, the data you have, and what good looks like. I reply with a plan, a fixed scope, and what I would measure — or a polite no with a pointer.
+          - generic [ref=f2e360]:
+            - generic [ref=f2e361]: Full-time
+            - generic [ref=f2e362]: Freelance
+            - generic [ref=f2e363]: Advisory
+        - generic [ref=f2e364]:
+          - generic [ref=f2e365]:
+            - link "hello@yourname.dev ↗" [ref=f2e366] [cursor=pointer]:
+              - /url: mailto:hello@yourname.dev
+              - generic [ref=f2e367]: hello@yourname.dev
+              - generic [ref=f2e368]: ↗
+            - link "Book a 25-min call* ↗" [ref=f2e369] [cursor=pointer]:
+              - /url: "#contact"
+              - generic [ref=f2e370]: Book a 25-min call*
+              - generic [ref=f2e371]: ↗
+            - link "GitHub — @yourhandle* ↗" [ref=f2e372] [cursor=pointer]:
+              - /url: "#contact"
+              - generic [ref=f2e373]: GitHub — @yourhandle*
+              - generic [ref=f2e374]: ↗
+            - link "LinkedIn — /in/yourname* ↗" [ref=f2e375] [cursor=pointer]:
+              - /url: "#contact"
+              - generic [ref=f2e376]: LinkedIn — /in/yourname*
+              - generic [ref=f2e377]: ↗
+            - link "Resume PDF* ↗" [ref=f2e378] [cursor=pointer]:
+              - /url: "#contact"
+              - generic [ref=f2e379]: Resume PDF*
+              - generic [ref=f2e380]: ↗
+          - paragraph [ref=f2e381]: "* Placeholder links — wire to real URLs before shipping."
+    - contentinfo [ref=f2e382]:
+      - generic [ref=f2e383]:
+        - generic [ref=f2e384]: © 2026 Your Name* · placeholder portfolio
+        - generic [ref=f2e385]: Aurora field · rev B · ask pill is placeholder logic
+  - alert [ref=f2e386]

@@ -1,0 +1,26 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic: Toukoum
+      - button "Fastfolio Build your AI portfolio" [ref=e4] [cursor=pointer]:
+        - img "Fastfolio" [ref=e5]
+        - generic [ref=e6]: Build your AI portfolio
+      - generic [ref=e9]:
+        - button "Logo About Toukoum" [ref=e11] [cursor=pointer]:
+          - img "Logo" [ref=e12]
+          - generic [ref=e13]: About Toukoum
+        - heading "Hey, I'm Aaaaby 👋" [level=2] [ref=e14]
+        - heading "AI Engineer" [level=1] [ref=e15]
+      - img "Hero memoji" [ref=e17]
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - textbox "Ask me anything…" [ref=e21]
+          - button "Submit question" [disabled] [ref=e22]
+        - generic [ref=e25]:
+          - button "Me" [ref=e26] [cursor=pointer]
+          - button "Projects" [ref=e28] [cursor=pointer]
+          - button "Skills" [ref=e30] [cursor=pointer]
+          - button "Fun" [ref=e32] [cursor=pointer]
+          - button "Contact" [ref=e34] [cursor=pointer]
+  - region "Notifications alt+T"
+  - alert [ref=e38]

@@ -1,0 +1,29 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - paragraph [ref=f1e4]: Hey, I’m Your Name
+      - heading "AI Engineer" [level=1] [ref=f1e5]
+      - img "Placeholder avatar — replace with your memoji or photo" [ref=f1e7]:
+        - generic [ref=f1e18]: ai*
+      - generic [ref=f1e19]:
+        - generic [ref=f1e20]: Ask me anything
+        - textbox "Ask me anything" [ref=f1e21]:
+          - /placeholder: Ask me anything…
+        - button "Send question" [disabled] [ref=f1e22]
+      - navigation "Quick questions" [ref=f1e25]:
+        - link "About me" [ref=f1e26] [cursor=pointer]:
+          - /url: /chat?q=Who%20are%20you%3F
+        - link "Projects" [ref=f1e27] [cursor=pointer]:
+          - /url: /chat?q=What%20are%20your%20projects%3F
+        - link "Skills" [ref=f1e28] [cursor=pointer]:
+          - /url: /chat?q=What%20are%20your%20skills%3F
+        - link "Fun" [ref=f1e29] [cursor=pointer]:
+          - /url: /chat?q=Tell%20me%20a%20fun%20fact
+        - link "Contact" [ref=f1e30] [cursor=pointer]:
+          - /url: /chat?q=How%20do%20I%20contact%20you%3F
+      - paragraph [ref=f1e31]: Placeholder profile — answers come from a scripted demo brain until an LLM key is added.
+    - generic [aria-hidden]: YOURNAME
+    - generic [ref=f1e32]:
+      - generic [ref=f1e33]: © 2026 Your Name* · interview me above
+      - generic [ref=f1e34]: Set in Nunito + Inter + JetBrains Mono
+  - alert [ref=f1e35]
