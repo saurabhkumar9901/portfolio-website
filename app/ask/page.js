@@ -32,12 +32,6 @@ export default function AskPage() {
           </div>
           <p className="ask-note">* Demo chat — answers are placeholders until the owner wires real content.</p>
         </main>
-        <footer>
-          <div className="wrap" style={{ padding: 0 }}>
-            <span>© 2026 Your Name* · placeholder portfolio</span>
-            <span><a href="/">Home</a> · Aurora field</span>
-          </div>
-        </footer>
       </div>
     </>
   );

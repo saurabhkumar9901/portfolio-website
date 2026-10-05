@@ -96,7 +96,15 @@ export default function Fluid() {
     }
 
     function onMove(e) {
-      const x = e.clientX, y = e.clientY;
+      paintAt(e.clientX, e.clientY);
+    }
+
+    function onTouch(e) {
+      const t = e.touches && e.touches[0];
+      if (t) paintAt(t.clientX, t.clientY);
+    }
+
+    function paintAt(x, y) {
       if (px >= 0) {
         const dx = x - px, dy = y - py;
         const dist = Math.hypot(dx, dy);
@@ -213,6 +221,7 @@ export default function Fluid() {
     }
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("touchmove", onTouch, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("resize", onResize);
     document.addEventListener("visibilitychange", onVis);
@@ -220,6 +229,7 @@ export default function Fluid() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("touchmove", onTouch);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVis);

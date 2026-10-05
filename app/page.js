@@ -26,12 +26,6 @@ export default function Page() {
           <AskBar />
           <CardNav />
         </header>
-        <footer>
-          <div className="wrap" style={{ padding: 0 }}>
-            <span>© 2026 Your Name* · placeholder portfolio</span>
-            <span>Aurora field · ask pill is placeholder logic</span>
-          </div>
-        </footer>
       </div>
     </>
   );
