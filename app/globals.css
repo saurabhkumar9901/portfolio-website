@@ -127,7 +127,11 @@ a:hover { color: var(--accent-ink); }
 .hero-sub { color: var(--ink-soft); max-width: 56ch; margin: 14px auto 0; }
 
 .avatar { width: 168px; height: 168px; margin: 26px auto 0; position: relative; }
-.avatar img, .avatar svg.face { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: linear-gradient(135deg, var(--mint), var(--cyan) 45%, var(--lav)); border: 4px solid #fff; box-shadow: 0 20px 50px rgba(20,20,23,0.16); }
+.avatar.is-loading { background: #e9edf3; border-radius: 50%; animation: avatar-pulse 1.2s ease-in-out infinite; }
+.avatar img, .avatar svg.face { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 20px 50px rgba(20,20,23,0.16); }
+.avatar img { opacity: 0; transition: opacity 0.45s ease; }
+.avatar img.is-ready { opacity: 1; }
+@keyframes avatar-pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 
 /* ---------- ask bar ---------- */
 .askzone { max-width: 680px; margin: 30px auto 0; }
@@ -213,6 +217,16 @@ a:hover { color: var(--accent-ink); }
 .home .hero { flex: 1; display: flex; flex-direction: column; width: 100%; }
 .home .askzone { margin-top: auto; padding-top: 24px; width: 100%; }
 .home .cardnav { width: 100%; margin-bottom: clamp(20px, 4vh, 44px); padding-bottom: env(safe-area-inset-bottom); }
+
+/* home entrance: top block drifts down, controls drift up — once per load */
+@keyframes hero-down { from { opacity: 0; transform: translateY(-28px); } to { opacity: 1; transform: none; } }
+@keyframes hero-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+.home .hero-eyebrow, .home h1, .home .hero-title, .home .hero-sub { animation: hero-down 0.9s cubic-bezier(.19,1,.22,1) backwards; }
+.home h1 { animation-delay: 0.04s; }
+.home .hero-title { animation-delay: 0.08s; }
+.home .hero-sub { animation-delay: 0.16s; }
+.home .askzone { animation: hero-up 0.9s cubic-bezier(.19,1,.22,1) 0.32s backwards; }
+.home .cardnav { animation: hero-up 0.9s cubic-bezier(.19,1,.22,1) 0.44s backwards; }
 
 /* ---------- sections ---------- */
 section.block { padding: 60px 0 8px; }
@@ -335,5 +349,8 @@ section.block { padding: 60px 0 8px; }
   .blob { animation: none !important; }
   .glow { display: none !important; }
   .edge.live path, .typing i { animation: none !important; }
+  .avatar.is-loading { animation: none !important; opacity: 0.7; }
+  .home .hero-eyebrow, .home h1, .home .hero-title, .home .hero-sub,
+  .home .askzone, .home .cardnav { animation: none !important; }
   * { transition: none !important; }
 }
