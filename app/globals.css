@@ -19,8 +19,34 @@
   --amber: #9a6200;
   --red: #b3261e;
   --radius: 20px;
-  --font-display: "Archivo", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Primary voice: Proxima Nova (commercial — needs a license).
+     Activate it either (a) by dropping licensed files as
+     /fonts/proxima-nova-regular.woff2, -medium, -semibold, -bold and
+     uncommenting the @font-face block below, or (b) via an Adobe Fonts
+     kit <link> in app/layout.js. Until then the stacks fall back to
+     Helvetica/system; JetBrains Mono still voices data labels. */
+  /* @font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/proxima-nova-regular.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/proxima-nova-medium.woff2") format("woff2");
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/proxima-nova-semibold.woff2") format("woff2");
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/proxima-nova-bold.woff2") format("woff2");
+    font-weight: 700 800; font-style: normal; font-display: swap;
+  } */
+  --font-display: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-body: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 

@@ -22,25 +22,25 @@ colors:
   red: "#b3261e"
 typography:
   display:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif"
     fontSize: "clamp(3rem, 8vw, 5.5rem)"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif"
     fontSize: "clamp(2rem, 4.5vw, 3.2rem)"
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    fontFamily: "'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif"
     fontSize: "27px"
     fontWeight: 600
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   body:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.65
@@ -121,7 +121,7 @@ The memorable moment is physical: pastel fluid follows the pointer with lag, the
 **Key Characteristics:**
 - Airy paper ground with drifting five-hue aurora, never dark mode.
 - One action blue committed to send + links; field hues never carry text.
-- Archivo display, Inter body calm, JetBrains Mono for all data labels.
+- Proxima Nova display + body, JetBrains Mono for all data labels.
 - Glass pills (999px), glass nav cards (18px), light pipeline sheet (20px).
 - Placeholders always marked synthetic (`*`, dashed notes); never styled as finished proof.
 
@@ -162,17 +162,17 @@ Full-palette daylight system: paper ground, white glass lifts, ink text, one act
 
 ## Typography
 
-**Display Font:** Archivo (with system-ui fallback, via next/font, weights 500/600/700)
-**Body Font:** Inter (with system-ui fallback, via next/font)
+**Display Font:** Proxima Nova (commercial — licensed files or Adobe Fonts kit required; falls back to Helvetica/system until activated)
+**Body Font:** Proxima Nova (same license path as display)
 **Label/Mono Font:** JetBrains Mono (with ui-monospace fallback, via next/font, weights 400/500/700)
 
-**Character:** Confident tight-tracked grotesque display against quiet humanist body; every piece of furniture — eyebrows, counts, node headers, metrics, trace, footer — speaks in tracked-out mono with tabular numerals.
+**Character:** Confident tight-tracked geometric display against calm geometric body; every piece of furniture — eyebrows, counts, node headers, metrics, trace, footer — speaks in tracked-out mono with tabular numerals.
 
 ### Hierarchy
 - **Display** (800, clamp(3rem, 8vw, 5.5rem), 1.0, tracking -0.03em): hero title ("AI Engineer") only; balance-wrapped.
 - **Headline** (700, clamp(2rem, 4.5vw, 3.2rem), 1.1, tracking -0.02em): hero `h1` greeting line, with a 0.62em 500-weight soft sub-line; balance-wrapped.
 - **Title** (650–750, 21–30px, 1.1, tracking -0.02em): system titles (27px), spec rows (21px), contact panel (30px), section heads (clamp(1.8rem, 3.4vw, 2.6rem), 750); balance-wrapped.
-- **Body** (400, 17px, 1.65): Inter prose; hero sub capped at 56ch, section intros at 60ch, system blurbs at 56ch, bubbles at 15px/1.6.
+- **Body** (400, 17px, 1.65): Proxima Nova prose; hero sub capped at 56ch, section intros at 60ch, system blurbs at 56ch, bubbles at 15px/1.6.
 - **Label** (400–700, 10.5–13px, 0.06–0.12em tracking, uppercase): eyebrows, counts, tags, node headers, metrics, trace, contact lines, footer — all JetBrains Mono. Metrics, tickers, node values, and log dates render tabular numerals (`font-variant-numeric: tabular-nums`).
 
 ### Named Rules
@@ -221,7 +221,7 @@ Single left-aligned builder link opening the page.
 - **Hover / Focus:** lifts 2px with expo ease; accent focus ring (see Browser-Surface Theming).
 
 ### Hero
-Centered eyebrow → greeting → title → sub → avatar → ask → nav. Eyebrow is mono uppercase with a green pulse dot; title is the 800-weight Archivo giant; sub is soft 56ch prose.
+Centered eyebrow → greeting → title → sub → avatar → ask → nav. Eyebrow is mono uppercase with a green pulse dot; title is the 800-weight Proxima Nova giant; sub is soft 56ch prose.
 - **Avatar:** 168px circle; probes `public/avatar.png` via HEAD (renders the memoji when the file lands, authored SVG face otherwise — mint→cyan→lavender ground, cream face, ink eyes — labeled as placeholder). White 4px ring, avatar float shadow.
 
 ### Ask Pill + Chat Page
@@ -245,7 +245,7 @@ Two-pane proof cards (main prose / tinted side with live sheet or mini-DAG).
 ### Pipeline Sheet (Light)
 The live demo: 4-node RAG DAG (Query → Retrieve → Rerank → Generate) with animated edges, run controls, token ticker, and mono trace.
 - **Chrome:** mono uppercase head (`live system` + run id + green lamp), 22px body, mono uppercase foot (`synthetic demo data` / `trace below`).
-- **Nodes:** 12px radius, ink borders, mono index + status header, Archivo name, mono tabular detail; active node rings action with wash halo and lifts 2px; done nodes invert to ink/white.
+- **Nodes:** 12px radius, ink borders, mono index + status header, Proxima Nova name, mono tabular detail; active node rings action with wash halo and lifts 2px; done nodes invert to ink/white.
 - **Motion:** 650ms phase ticks (+97 tokens/step, 412 at cite); live edges dash-flow on a 0.9s loop; trace (`#F5F7FC` ground) reveals one line per phase.
 
 ### Spec Shelf
@@ -288,7 +288,7 @@ Synthetic content is never styled as finished: asterisked names and metrics (`Yo
 
 ### Don't:
 - **Don't** introduce dark surfaces, neon glows, schematic grids, or a second accent hue.
-- **Don't** set body copy in mono or metadata in Inter — furniture is mono, prose is Inter, display is Archivo.
+- **Don't** set body copy in mono or metadata in Proxima Nova's place — furniture is mono, prose and display are Proxima Nova.
 - **Don't** put text directly on aurora hues or use field hues for borders and states.
 - **Don't** sharpen the geometry; pills stay 999px, nav cards 18px, sheets 20px, contact 24px.
 - **Don't** invent employers, testimonials, metrics, or press; placeholders stay obviously replaceable.
