@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <Aurora />
       <Fluid />
-      <div className="wrap">
+      <div className="wrap home">
         <div className="toprow">
           {/* <a className="top-pill" href="/contact"><span className="mark">B</span>Build your AI portfolio<span aria-hidden="true">›</span></a> */}
         </div>

@@ -181,7 +181,7 @@ Full-palette daylight system: paper ground, white glass lifts, ink text, one act
 
 ## Layout
 
-Centered single column on a 1080px wrap (24px side gutters, content `z-index: 1` above the fixed aurora at `z-index: 0`). `/` is the hero front door (top pill → eyebrow → greeting → title → sub → 168px avatar → ask pill (560px max) → five-card nav (640px max)). Sub-routes (`/me`, `/projects`, `/skills`, `/fun`, `/contact`, `/ask`) share one shell: navigation (back-home pill or card nav with the current route ringed) → route content, ending on content with no footer. Content map: `/me` holds the spec bio block + build log; `/projects` holds the 4 systems (Atlas RAG carries the live sheet); `/skills` holds the spec shelf; `/fun` holds placeholder files + contact CTA; `/contact` holds the contact grid. Shared data lives in `lib/content.js`. System cards split 1.1fr/0.9fr (main/side); spec rows split 230px/1fr/1fr; contact grid splits 1fr/1fr; pipeline DAG grids 1fr/28px gaps ×4 nodes.
+Centered single column on a 1080px wrap (24px side gutters, content `z-index: 1` above the fixed aurora at `z-index: 0`). `/` is the hero front door (top pill → eyebrow → greeting → title → sub → 168px avatar, then the ask pill (680px max) + five-card nav (760px max) docked to the viewport bottom via a min-height flex column with safe-area padding; short viewports scroll instead of clipping). Sub-routes (`/me`, `/projects`, `/skills`, `/fun`, `/contact`, `/ask`) share one shell: navigation (back-home pill or card nav with the current route ringed) → route content, ending on content with no footer. Content map: `/me` holds the spec bio block + build log; `/projects` holds the 4 systems (Atlas RAG carries the live sheet); `/skills` holds the spec shelf; `/fun` holds placeholder files + contact CTA; `/contact` holds the contact grid. Shared data lives in `lib/content.js`. System cards split 1.1fr/0.9fr (main/side); spec rows split 230px/1fr/1fr; contact grid splits 1fr/1fr; pipeline DAG grids 1fr/28px gaps ×4 nodes.
 
 Responsive: everything collapses at 900px — system cards, spec rows, and contact grid stack to one column (dividers rotate from left-border to top-border); the pipeline DAG stacks to one column with edges rotated 90° (26px tall); card nav keeps five columns but compresses (12px labels, 14px radius, 8px gap); log rows stack to one column.
 
@@ -232,7 +232,7 @@ The primary interaction. Glass pill bar (999px, 50% white + 18px blur + 150% sat
 
 ### Card Nav
 Five glass link cards (Me, Projects, Skills, Fun, Contact) in a 5-column grid.
-- **Style:** true glass — `rgba(255,255,255,0.45)` + 18px blur + 150% saturate, `rgba(255,255,255,0.7)` border, inset top highlight, 18px radius, 18px 8px 16px padding, 14.5px 600 ink text (deepened for contrast over translucency), authored 22px stroke SVG icon each (no icon font).
+- **Style:** true glass — `rgba(255,255,255,0.45)` + 18px blur + 150% saturate, `rgba(255,255,255,0.7)` border, inset top highlight, 18px radius, 24px 10px 22px padding, 15px 600 ink text (deepened for contrast over translucency), authored 24px stroke SVG icon each (no icon font).
 - **State:** hover raises opacity to 0.65 and lifts 4px with deepened shadow; the current route carries `aria-current="page"` plus an accent border + wash ring (`.is-here`).
 
 ### System Cards
