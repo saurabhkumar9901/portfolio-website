@@ -4,4 +4,4 @@ pnpm-lock.yaml
 .env
 .playwright-mcp
 .impeccable
-.next 
+portfolio/.next/
