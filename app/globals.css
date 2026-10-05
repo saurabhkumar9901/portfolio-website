@@ -123,7 +123,7 @@ a:hover { color: var(--accent-ink); }
 .hero-eyebrow .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(14,122,61,0.15); }
 .hero h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4.5vw, 3.2rem); letter-spacing: -0.02em; margin: 22px 0 6px; text-wrap: balance; }
 .hero h1 .soft { color: var(--ink-soft); font-weight: 500; font-size: 0.62em; display: block; letter-spacing: -0.01em; }
-.hero-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: -0.03em; line-height: 1; margin: 0 0 8px; text-wrap: balance; }
+.hero-title { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: -0.03em; line-height: 1; margin: 0 0 8px; text-wrap: balance; }
 .hero-sub { color: var(--ink-soft); max-width: 56ch; margin: 14px auto 0; }
 
 .avatar { width: 168px; height: 168px; margin: 26px auto 0; position: relative; }

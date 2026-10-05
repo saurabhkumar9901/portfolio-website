@@ -24,7 +24,7 @@ typography:
   display:
     fontFamily: "'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif"
     fontSize: "clamp(3rem, 8vw, 5.5rem)"
-    fontWeight: 800
+    fontWeight: 400
     lineHeight: 1
     letterSpacing: "-0.03em"
   headline:
@@ -169,7 +169,7 @@ Full-palette daylight system: paper ground, white glass lifts, ink text, one act
 **Character:** Confident tight-tracked geometric display against calm geometric body; every piece of furniture — eyebrows, counts, node headers, metrics, trace, footer — speaks in tracked-out mono with tabular numerals.
 
 ### Hierarchy
-- **Display** (800, clamp(3rem, 8vw, 5.5rem), 1.0, tracking -0.03em): hero title ("AI Engineer") only; balance-wrapped.
+- **Display** (400, clamp(3rem, 8vw, 5.5rem), 1.0, tracking -0.03em): hero title ("AI Engineer") only; balance-wrapped.
 - **Headline** (700, clamp(2rem, 4.5vw, 3.2rem), 1.1, tracking -0.02em): hero `h1` greeting line, with a 0.62em 500-weight soft sub-line; balance-wrapped.
 - **Title** (650–750, 21–30px, 1.1, tracking -0.02em): system titles (27px), spec rows (21px), contact panel (30px), section heads (clamp(1.8rem, 3.4vw, 2.6rem), 750); balance-wrapped.
 - **Body** (400, 17px, 1.65): Proxima Nova prose; hero sub capped at 56ch, section intros at 60ch, system blurbs at 56ch, bubbles at 15px/1.6.
