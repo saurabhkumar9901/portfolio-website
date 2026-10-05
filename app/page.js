@@ -17,11 +17,10 @@ export default function Page() {
         </div>
         <header className="hero" id="top">
           {/* <span className="hero-eyebrow"><span className="pulse" aria-hidden="true" />Available — 2026 · placeholder content</span> */}
-          <h1><span className="soft">Hey, I&apos;m Your Name</span></h1>
+          <h1><span className="soft">Hey, I&apos;m Saurabh Kumar</span></h1>
           <div className="hero-title">AI Engineer</div>
           <p className="hero-sub">
             I build retrieval systems, agents, and evals, then ship them as production web apps.
-            Every claim is a runnable system with traces. Replace this copy with your story.
           </p>
           <Avatar />
           <AskBar />
