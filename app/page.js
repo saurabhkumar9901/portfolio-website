@@ -4,7 +4,7 @@ import Avatar from "../components/Avatar";
 import AskBar from "../components/AskBar";
 import CardNav from "../components/CardNav";
 
-export const metadata = { title: "Your Name — AI Engineer" };
+export const metadata = { title: "Saurabh Kumar — AI Developer" };
 
 export default function Page() {
   return (
@@ -18,7 +18,7 @@ export default function Page() {
         <header className="hero" id="top">
           {/* <span className="hero-eyebrow"><span className="pulse" aria-hidden="true" />Available — 2026 · placeholder content</span> */}
           <h1><span className="soft">Hey, I&apos;m Saurabh Kumar</span></h1>
-          <div className="hero-title">AI Engineer</div>
+          <div className="hero-title">AI Developer</div>
           <p className="hero-sub">
             I build retrieval systems, agents, and evals, then ship them as production web apps.
           </p>

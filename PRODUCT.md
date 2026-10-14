@@ -35,13 +35,12 @@ Confirmed:
 - Next.js website, portfolio mode (Persuade + Experience).
 - Audience: both hiring and freelance.
 - Range: LLM Engineering + ML/Research + Full-stack AI.
-- Content strategy: realistic placeholders the user will replace later.
+- Content strategy: single chatbot surface; bot answers from PROFILE.md + live GitHub tool, scripted fallback when no key.
 
 Undecided:
-- Name, role title, location, photo.
-- Exact 3-6 projects, metrics, links, case-study depth.
-- Skills list granularity, resume PDF, blog/writing.
-- Contact email, form vs. mailto, social URLs.
+- Exact 3-6 projects, metrics, case-study depth.
+- Skills list granularity, blog/writing.
+- Call scheduling link, form vs. mailto.
 - Deploy target, domain, analytics.
 
 Constraints:
@@ -49,11 +48,11 @@ Constraints:
 
 ## Brand Commitments
 
-None confirmed. No binding name, voice, palette, type, or references. User explicitly delegated visual world to Impeccable.
+Name Saurabh Kumar, title AI Developer, based Noida. Current: Founding AI Engineer at ENXT AI. Bio line, GitHub (@saurabhkumar9901), LinkedIn (/in/saurabh-kumar-11june), email, and resume link are user-supplied real facts — preserve verbatim, never embellish. Visual world remains delegated to Impeccable.
 
 ## Evidence on Hand
 
-No real projects, copy, resume, or assets provided yet. Build with clearly-marked placeholder content (e.g. Project Alpha, ACME) that the user will swap for real proof. State absence so future work does not invent credibility claims.
+Real: identity, bio, two roles with ships (ENXT AI call-agency assistant + Play Store Meeting Minutes app; Briqlabs RAG apps, -60% doc analysis time), contact links, memoji avatar, resume/LinkedIn text, 4 projects with links, publication, skills, GitHub profile. Live: ADK chatbot (gemini-3.5-flash-lite) grounded in PROFILE.md + github_repos tool; key in gitignored .env.local. Still illustrative: scripted fallback answers (tagged demo). The bot must say it doesn't know rather than invent.
 
 ## Product Principles
 

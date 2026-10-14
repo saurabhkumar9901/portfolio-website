@@ -4,8 +4,8 @@ import "./globals.css";
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-mono" });
 
 export const metadata = {
-  title: "Your Name — AI Engineer | Ask me anything",
-  description: "Chat-first portfolio of an AI engineer. Ask about projects, skills, or contact — placeholder demo content.",
+  title: "Saurabh Kumar — AI Engineer | Ask me anything",
+  description: "Chat-first portfolio of AI developer Saurabh Kumar. Projects, skills and fun entries include illustrative placeholder demos.",
 };
 
 export default function RootLayout({ children }) {

@@ -114,16 +114,16 @@ components:
 
 **Creative North Star: "The Aurora Field"**
 
-An airy daylight portfolio where a five-hue fluid field drifts behind everything and leans toward the visitor's cursor. One centered hero front door — eyebrow, greeting, giant title, round avatar, ask pill, five glass nav cards — with one route per card: `/me` (bio + build log), `/projects` (live pipeline sheet + systems), `/skills` (spec shelf), `/fun` (placeholder human page), `/contact` (contact grid). Every route repeats the field and card nav (current route ringed). Density is calm and centered: a 1080px wrap, generous whitespace, glass pills and cards, one action blue reserved for send controls and links. No footer — pages end on their content.
+An airy daylight portfolio where a five-hue fluid field drifts behind everything and leans toward the visitor's cursor. One centered hero front door — greeting, giant title, round memoji avatar, ask pill, five glass nav cards — and one destination: the `/ask` chat page, where an ADK agent (Gemini) answers from profile facts plus a live GitHub tool. The five cards deep-link into the chat with preset questions. Density is calm and centered: a 1080px wrap, generous whitespace, glass pills and cards, one action blue reserved for send controls and links. No footer — pages end on their content.
 
-The memorable moment is physical: pastel fluid follows the pointer with lag, then the visitor asks the pill a question and gets a keyword-matched answer with a typing indicator. Every claim still pairs with a runnable system and honestly-labeled synthetic data carried over from the prior world.
+The memorable moment is conversational: smoke stirs under the cursor, the visitor asks a question, and a real agent answers from Saurabh's profile, repos, and links — demo fallback answers stay tagged.
 
 **Key Characteristics:**
 - Airy paper ground with drifting five-hue aurora, never dark mode.
 - One action blue committed to send + links; field hues never carry text.
 - Proxima Nova display + body, JetBrains Mono for all data labels.
-- Glass pills (999px), glass nav cards (18px), light pipeline sheet (20px).
-- Placeholders always marked synthetic (`*`, dashed notes); never styled as finished proof.
+- Glass pills (999px), glass nav cards (18px), glass input (999px).
+- Placeholders always marked (`*`, demo tags); real facts ship unlabeled, never embellished.
 
 ## Colors
 
@@ -181,7 +181,7 @@ Full-palette daylight system: paper ground, white glass lifts, ink text, one act
 
 ## Layout
 
-Centered single column on a 1080px wrap (24px side gutters, content `z-index: 1` above the fixed aurora at `z-index: 0`). `/` is the hero front door (top pill → eyebrow → greeting → title → sub → 168px avatar, then the ask pill (680px max) + five-card nav (760px max) docked to the viewport bottom via a min-height flex column with safe-area padding; short viewports scroll instead of clipping). Sub-routes (`/me`, `/projects`, `/skills`, `/fun`, `/contact`, `/ask`) share one shell: navigation (back-home pill or card nav with the current route ringed) → route content, ending on content with no footer. Content map: `/me` holds the spec bio block + build log; `/projects` holds the 4 systems (Atlas RAG carries the live sheet); `/skills` holds the spec shelf; `/fun` holds placeholder files + contact CTA; `/contact` holds the contact grid. Shared data lives in `lib/content.js`. System cards split 1.1fr/0.9fr (main/side); spec rows split 230px/1fr/1fr; contact grid splits 1fr/1fr; pipeline DAG grids 1fr/28px gaps ×4 nodes.
+Centered single column on a 1080px wrap (24px side gutters, content `z-index: 1` above the fixed aurora at `z-index: 0`). `/` is the hero front door (top pill → greeting → title → sub → 168px memoji avatar, then the ask pill (680px max) + five-card nav (760px max) docked to the viewport bottom via a min-height flex column with safe-area padding; short viewports scroll instead of clipping). `/ask` centers a 680px open column: memoji avatar, greeting, floating thread, bottom dock with quick chips (after first send) + follow-up input.
 
 Responsive: everything collapses at 900px — system cards, spec rows, and contact grid stack to one column (dividers rotate from left-border to top-border); the pipeline DAG stacks to one column with edges rotated 90° (26px tall); card nav keeps five columns but compresses (12px labels, 14px radius, 8px gap); log rows stack to one column.
 
@@ -217,58 +217,38 @@ The cursor smoke from the user's recording, rebuilt as original canvas-2D physic
 ### Top Pill
 Single left-aligned builder link opening the page.
 - **Shape:** full pill (999px), 10px 18px padding, 14px 600 text.
-- **Primary:** white glass (80% + 12px blur), hairline border, ink text, 22px ink `B` mark, rest shadow.
+- **Primary:** white glass (50% + 16px blur + 150% saturate), white border, ink text, 22px ink `B` mark, rest shadow.
 - **Hover / Focus:** lifts 2px with expo ease; accent focus ring (see Browser-Surface Theming).
 
 ### Hero
-Centered eyebrow → greeting → title → sub → avatar → ask → nav. Eyebrow is mono uppercase with a green pulse dot; title is the 800-weight Proxima Nova giant; sub is soft 56ch prose.
+Centered greeting → title → sub → memoji avatar → ask → nav. Title is the regular-weight Proxima Nova giant; sub is soft 56ch prose.
 - **Avatar:** 168px circle; renders the user-supplied memoji at `public/avatar.png` directly (no probe round-trip) over a neutral pulsing disc, fading in on load via a complete-check ref + onLoad; authored male SVG face remains as error-only fallback. No background, no ring — memoji floats directly on the field with a soft drop shadow.
 
-### Ask Pill + Chat Page
-The primary interaction. Glass pill bar (999px, 50% white + 18px blur + 150% saturate, 8px padding, 24px text inset, white border + inset highlight) with a 46px round blue send button (arrow glyph). The hero bar is a pure entry form: typing + send navigates to `/ask?q=`. The `/ask` route hosts the conversation in a glass chat card (0.6 white + 24px blur, 24px radius, max 680px column): avatar, title, glass bubbles, quick chips + Hide toggle that appear only after the first sent message (never on pristine views or mere focus), and a follow-up glass input. Same 5-exchange limit with gray limit state applies. Keyword placeholder brain throughout.
-- **Shape:** pill bar; chat card 24px; bubbles 18px with pinched corners (user dark frosted glass, answer white frosted glass with mono accent-ink tag); chips 999px pills.
+### Ask Page (Open Chat)
+Top bar (back-home pill left, info button right with popover) → 88px memoji avatar → greeting paragraph (only when empty) → floating thread → bottom dock. Bot answers render as plain centered paragraphs with a tiny mono tag (bare `Gemini` live, suffixed demo otherwise); user messages stay dark pills; thinking dots hug left. Dock pins the Hide toggle + quick chips (visible only after the first sent message) + glass input with up-arrow send. Thread scrolls internally; page is viewport-fixed. Entrance: avatar/greeting drift down, dock drifts up; all killed under reduced motion.
+Answers stream token-by-token over SSE from one ADK agent (Gemini 3.5 Flash-Lite, `StreamingMode.SSE`) grounded in `PROFILE.md` plus a live GitHub repos tool (hourly cache, static fallback); generated text renders in the theme voice with a markdown-lite pass (escaped HTML, bold, lists, breaks). Same 5-exchange limit with gray limit state applies. Live answers carry a bare `Gemini` tag; scripted fallback answers carry a suffixed demo tag; network failures name the email recovery.
+- **Shape:** pill bar and input (999px); open thread with plain centered bot paragraphs; chips 999px pills.
 - **Primary:** transparent input (16px, accent caret), blue send; send hover shifts to action-ink and scales 1.06; chip hover lifts 2px; all state motion eases expo-out.
-- **Typing:** three 7px faint dots blinking on a 1s loop while the ~700ms placeholder brain "thinks".
+- **Typing:** three 7px faint dots blinking on a 1s loop while the agent thinks.
+- **Secrets:** `GEMINI_API_KEY` lives in gitignored `.env.local`, server-only; the browser never sees it.
 
 ### Card Nav
-Five glass link cards (Me, Projects, Skills, Fun, Contact) in a 5-column grid.
+Five glass link cards (Me, Projects, Skills, Fun, Contact) in a 5-column grid. Each deep-links into `/ask` with a preset question (`/ask?q=…`); there are no content routes behind them.
 - **Style:** true glass — `rgba(255,255,255,0.45)` + 18px blur + 150% saturate, `rgba(255,255,255,0.7)` border, inset top highlight, 18px radius, 24px 10px 22px padding, 15px 600 ink text (deepened for contrast over translucency), authored 24px stroke SVG icon each (no icon font).
 - **State:** hover raises opacity to 0.65 and lifts 4px with deepened shadow; the current route carries `aria-current="page"` plus an accent border + wash ring (`.is-here`).
 
-### System Cards
-Two-pane proof cards (main prose / tinted side with live sheet or mini-DAG).
-- **Corner Style:** 20px token radius.
-- **Background:** white glass (88% + 10px blur); side pane tints mint→blue→peach (`#F6F8FF → #F2FBF5 → #FFF8F1`).
-- **Border:** 1px hairline; 32px internal padding.
-- **Internal:** 27px display title, soft blurb, mono uppercase tag chips, 3-column metric grid (tabular, 700), eval lamp row (green/amber/red dots), dashed disabled link buttons.
+### Agent Chat (retired surfaces removed)
 
-### Pipeline Sheet (Light)
-The live demo: 4-node RAG DAG (Query → Retrieve → Rerank → Generate) with animated edges, run controls, token ticker, and mono trace.
-- **Chrome:** mono uppercase head (`live system` + run id + green lamp), 22px body, mono uppercase foot (`synthetic demo data` / `trace below`).
-- **Nodes:** 12px radius, ink borders, mono index + status header, Proxima Nova name, mono tabular detail; active node rings action with wash halo and lifts 2px; done nodes invert to ink/white.
-- **Motion:** 650ms phase ticks (+97 tokens/step, 412 at cite); live edges dash-flow on a 0.9s loop; trace (`#F5F7FC` ground) reveals one line per phase.
-
-### Spec Shelf
-Three-row capability table (LLM Engineering / ML & Training / Full-stack Delivery × reaches-for / never-ships-without).
-- **Style:** white glass (88%), 20px radius, 230px/1fr/1fr rows, 26px cells, hairline dividers; mono uppercase column labels, 21px display row titles.
-
-### Build Log
-Placeholder timeline (2023 → 2026).
-- **Style:** white glass (88%), 20px radius; rows grid 140px/1fr/auto with tabular mono dates and 64ch prose.
-
-### Contact Grid
-Two-pane closer (pitch / contact lines).
-- **Style:** 24px radius, 38px cells; right pane tints blue→mint→peach (`#F2F6FF → #EEFBF3 → #FFF7EE`).
-- **Lines:** mono 13px white cards (14px radius) with ↗ markers; hover lifts 2px with a blue glow and action-ink text.
+The deleted content routes (Me/Projects/Skills/Fun/Contact pages, system cards, pipeline demo, spec shelf, build log, contact grid) live on only as bot knowledge: `PROFILE.md` (identity, roles, projects with links, publication, education, skills) plus the `github_repos` FunctionTool. The bot answers from these facts and says it doesn't know anything outside them.
 
 ### Pill Buttons
 Mono uppercase pills (12px, 0.1em tracking, 999px, 14px 26px, 10px 18px small).
 - **Primary:** ink fill, white text; hover shifts to action-ink border+fill.
 - **Ghost:** white fill, ink text, ink border; hover inverts to ink fill/white text.
-- **Disabled:** 0.55–0.65 opacity, dashed border, wait/not-allowed cursor (placeholder links).
+- **Disabled:** 0.55–0.65 opacity, dashed border, wait/not-allowed cursor (limit state, thinking state).
 
 ### Motion
-One field + one water + one demo + one entrance, all expo-eased. Aurora blobs drift 22–32s ease-in-out alternates; pointer follow lerps at 0.06 across per-layer depths (0.35–1.7 × 9vmax) with a direct-tracking cursor glow; water beads stream under movement and click blooms dissipate over ~1.5s. Home hero enters once per load: eyebrow/greeting/title/sub fade down staggered (0–0.16s), ask + cards fade up (0.32/0.44s), all 0.9s expo; killed under reduced motion. The /ask page enters the same way on every arrival (avatar/title/sub fade down, chat card fades up at 0.2s). Pipeline phases tick at 650ms with 0.9s edge dash-flow; typing dots blink at 1s. All hovers ease exponential (`cubic-bezier(.19,1,.22,1)`, 0.5s transform / 0.2–0.3s color). `prefers-reduced-motion` kills blob drift, glow, dye, edge flow, typing blink, smooth scroll, and all transitions; touch devices skip pointer-follow entirely.
+One field + one smoke + one entrance, all expo-eased. Aurora blobs drift 22–32s ease-in-out alternates; pointer follow lerps at 0.06 across per-layer depths (0.35–1.7 × 9vmax) with a direct-tracking cursor glow; smoke beads stream under movement and click blooms dissipate within 5–10s. Home hero enters once per load: greeting/title/sub fade down staggered (0–0.16s), ask + cards fade up (0.32/0.44s), all 0.9s expo; killed under reduced motion. The /ask page enters the same way on every arrival (avatar/title/sub fade down, chat card fades up at 0.2s). Typing dots blink at 1s. All hovers ease exponential (`cubic-bezier(.19,1,.22,1)`, 0.5s transform / 0.2–0.3s color). `prefers-reduced-motion` kills blob drift, glow, dye, edge flow, typing blink, smooth scroll, and all transitions; touch devices skip pointer-follow entirely.
 
 ### Browser-Surface Theming
 Light-only chrome bound to the paper world: text selection is ink ground with paper text; keyboard focus is always a 2px action outline offset 3px with 6px radius; the 12px scrollbar rides a paper track with a `#C9C7C0` thumb ringed by paper (8px radius, inks on hover); links inherit ink with a 4px underline offset (1px thickness) and ink-blue on hover; inputs use an action-blue caret; metrics always set tabular numerals.
