@@ -13,11 +13,30 @@ const LIMIT = 5;
 const LIMIT_TEXT = "You've reached your message limit.";
 const NET_FAIL = "The bot is unreachable right now - try again, or email saurabhkumar9901@gmail.com.";
 
+function linkify(h) {
+  const saved = [];
+  h = h.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, (m, t, u) => {
+    saved.push(`<a href="${u}" target="_blank" rel="noopener noreferrer">${t}</a>`);
+    return `\u0001${saved.length - 1}\u0001`;
+  });
+  h = h.replace(/(^|[\s(>])(https?:\/\/[^\s<>"')\]]+)/g, (m, pre, u) => {
+    let url = u;
+    let trail = "";
+    while (/[.,;:!?)\]]$/.test(url)) {
+      trail = url.slice(-1) + trail;
+      url = url.slice(0, -1);
+    }
+    return `${pre}<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>${trail}`;
+  });
+  return h.replace(/\u0001(\d+)\u0001/g, (m, n) => saved[Number(n)]);
+}
+
 function renderMd(text) {
   let h = String(text)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+  h = linkify(h);
   h = h.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   const lines = h.split("\n");
   let out = "";
@@ -40,6 +59,21 @@ function renderMd(text) {
   }
   if (inList) out += "</ul>";
   return out.replace(/(<br>)+$/, "");
+}
+
+function StreamText({ text }) {
+  const lines = String(text).split("\n");
+  return (
+    <>
+      {lines.map((line, i) => (
+        <span
+          key={i}
+          className="sline"
+          dangerouslySetInnerHTML={{ __html: renderMd(line) || "&nbsp;" }}
+        />
+      ))}
+    </>
+  );
 }
 
 export default function ChatPanel({ initialQuestion }) {
@@ -89,7 +123,7 @@ export default function ChatPanel({ initialQuestion }) {
         const reader = r.body.getReader();
         const dec = new TextDecoder();
         let buf = "";
-        for (;;) {
+        for (; ;) {
           const { done, value } = await reader.read();
           if (done) break;
           buf += dec.decode(value, { stream: true });
@@ -149,8 +183,8 @@ export default function ChatPanel({ initialQuestion }) {
         {turns.map((t, i) => (
           <div key={i} style={{ display: "contents" }}>
             <div className="bubble q">{t.q}</div>
-            {t.a && <div className="bot-plain"><span className="tag">{t.live ? t.tag : t.tag + " - demo"}</span><span dangerouslySetInnerHTML={{ __html: renderMd(t.a) }} /></div>}
-            {!t.a && t.stream !== undefined && <div className="bot-plain streaming"><span className="tag">Gemini</span><span dangerouslySetInnerHTML={{ __html: renderMd(t.stream) }} /></div>}
+            {t.a && <div className="bot-plain">{!t.live && <span className="tag">{t.tag} - demo</span>}<span dangerouslySetInnerHTML={{ __html: renderMd(t.a) }} /></div>}
+            {!t.a && t.stream !== undefined && <div className="bot-plain streaming"><StreamText text={t.stream} /></div>}
           </div>
         ))}
         {thinking && !streaming && <div className="bubble a thinking-bubble"><span className="typing" aria-label="Thinking"><i /><i /><i /></span></div>}
