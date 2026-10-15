@@ -89,11 +89,18 @@ export default function ChatPanel({ initialQuestion }) {
   const chipsVisible = !dismissed && !limited && answered > 0;
   const streaming = turns.some((t) => t.stream !== undefined && !t.a);
 
+  function syncFade() {
+    const el = chatRef.current;
+    if (!el) return;
+    el.classList.toggle("scrolled", el.scrollTop > 32);
+  }
+
   useEffect(() => {
     const el = chatRef.current;
     if (!el) return;
     const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 140;
     if (nearBottom) el.scrollTo({ top: el.scrollHeight, behavior: "auto" });
+    syncFade();
   }, [turns, thinking]);
 
   async function ask(q) {
@@ -176,7 +183,7 @@ export default function ChatPanel({ initialQuestion }) {
 
   return (
     <div className="chatopen">
-      <div className="thread" aria-live="polite" ref={chatRef}>
+      <div className="thread" aria-live="polite" ref={chatRef} onScroll={syncFade}>
         {turns.length === 0 && !thinking && (
           <p className="greet">Hey there! <span aria-hidden="true">👋</span> How&apos;s it going? What brings you to my little corner of the internet?</p>
         )}
