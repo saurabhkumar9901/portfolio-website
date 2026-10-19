@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useVoice } from "./VoiceProvider";
 
 const QUICK = [
   { label: "Me", q: "Tell me about yourself", icon: <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#0e9f6e" strokeWidth="1.8" /><circle cx="9" cy="10.5" r="1.2" fill="#0e9f6e" /><circle cx="15" cy="10.5" r="1.2" fill="#0e9f6e" /><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8" stroke="#0e9f6e" strokeWidth="1.8" strokeLinecap="round" /></svg> },
@@ -77,6 +78,7 @@ function StreamText({ text }) {
 }
 
 export default function ChatPanel({ initialQuestion }) {
+  const voice = useVoice();
   const [turns, setTurns] = useState([]);
   const [value, setValue] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -108,6 +110,8 @@ export default function ChatPanel({ initialQuestion }) {
     if (!clean || busy.current || limited) return;
     busy.current = true;
     setThinking(true);
+    voice?.stop();
+    voice?.beginTurn();
     const next = [...turns, { q: clean, a: null }].slice(-LIMIT);
     setTurns(next);
     const messages = next.flatMap((t) => (
@@ -124,12 +128,17 @@ export default function ChatPanel({ initialQuestion }) {
         const data = await r.json();
         const text = (data && data.text ? String(data.text) : "").trim() || NET_FAIL;
         const live = data && data.source === "adk";
-        fill({ a: text, tag: live ? "Gemini" : "Quick answer", live });
+        setTurns((t) => t.map((turn) => (
+          turn.a ? turn : { ...turn, a: text, tag: live ? "Gemini" : "Quick answer", live, intent: data?.intent }
+        )));
+        if (data?.intent) voice?.playStatic(data.intent);
+        else voice?.speakText(text);
       } else {
         setTurns((t) => t.map((turn) => (turn.a ? turn : { ...turn, stream: "" })));
         const reader = r.body.getReader();
         const dec = new TextDecoder();
         let buf = "";
+        let intent = null;
         for (; ;) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -147,9 +156,11 @@ export default function ChatPanel({ initialQuestion }) {
             }
             if (msg.delta) {
               const d = msg.delta;
+              voice?.pushChunk(d);
               setTurns((t) => t.map((turn) => (turn.stream !== undefined && !turn.a ? { ...turn, stream: turn.stream + d } : turn)));
             } else if (msg.done && msg.text) {
-              setTurns((t) => t.map((turn) => (turn.stream !== undefined && !turn.a ? { ...turn, a: msg.text, tag: "Quick answer", live: false } : turn)));
+              intent = msg.intent || null;
+              setTurns((t) => t.map((turn) => (turn.stream !== undefined && !turn.a ? { ...turn, a: msg.text, tag: "Quick answer", live: false, intent } : turn)));
             }
           }
         }
@@ -158,9 +169,12 @@ export default function ChatPanel({ initialQuestion }) {
           if (turn.stream) return { ...turn, a: turn.stream, tag: "Gemini", live: true };
           return { ...turn, a: NET_FAIL, tag: "Offline", live: false };
         }));
+        if (intent) voice?.playStatic(intent);
+        else voice?.endTurn();
       }
     } catch {
       setTurns((t) => t.map((turn) => (turn.a ? turn : { ...turn, a: NET_FAIL, tag: "Offline", live: false })));
+      voice?.stop();
     } finally {
       busy.current = false;
       setThinking(false);
@@ -190,7 +204,25 @@ export default function ChatPanel({ initialQuestion }) {
         {turns.map((t, i) => (
           <div key={i} style={{ display: "contents" }}>
             <div className="bubble q">{t.q}</div>
-            {t.a && <div className="bot-plain">{!t.live && <span className="tag">{t.tag} - demo</span>}<span dangerouslySetInnerHTML={{ __html: renderMd(t.a) }} /></div>}
+            {t.a && (
+              <div className="bot-plain">
+                {!t.live && <span className="tag">{t.tag} - demo</span>}
+                <span dangerouslySetInnerHTML={{ __html: renderMd(t.a) }} />
+                {voice?.available && (
+                  <button
+                    type="button"
+                    className="listen"
+                    onClick={() => (t.intent ? voice.playStatic(t.intent, { force: true }) : voice.speakText(t.a, { force: true }))}
+                    aria-label="Listen to this answer"
+                  >
+                    <svg viewBox="0 0 12 12" aria-hidden="true">
+                      <path d="M3.2 1.8v8.4L10 6z" fill="currentColor" />
+                    </svg>
+                    Listen
+                  </button>
+                )}
+              </div>
+            )}
             {!t.a && t.stream !== undefined && <div className="bot-plain streaming"><StreamText text={t.stream} /></div>}
           </div>
         ))}

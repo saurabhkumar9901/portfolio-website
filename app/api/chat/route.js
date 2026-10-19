@@ -24,7 +24,7 @@ export async function POST(req) {
         }
         send({ done: true, source: "adk" });
       } catch {
-        send({ done: true, source: "error", text: scripted.text });
+        send({ done: true, source: "error", text: scripted.text, intent: scripted.intent });
       } finally {
         controller.close();
       }

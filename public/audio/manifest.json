@@ -1,0 +1,32 @@
+{
+  "about": {
+    "file": "about.mp3",
+    "chars": 246,
+    "bytes": 117648
+  },
+  "projects": {
+    "file": "projects.mp3",
+    "chars": 179,
+    "bytes": 59904
+  },
+  "skills": {
+    "file": "skills.mp3",
+    "chars": 106,
+    "bytes": 39456
+  },
+  "fun": {
+    "file": "fun.mp3",
+    "chars": 204,
+    "bytes": 89136
+  },
+  "contact": {
+    "file": "contact.mp3",
+    "chars": 144,
+    "bytes": 53424
+  },
+  "fallback": {
+    "file": "fallback.mp3",
+    "chars": 217,
+    "bytes": 89856
+  }
+}

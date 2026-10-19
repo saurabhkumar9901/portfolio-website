@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "trace:memoji": "node scripts/trace-memoji.mjs"
   },
   "dependencies": {
     "@google/adk": "^2.3.0",
@@ -13,5 +14,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@neplex/vectorizer": "^0.1.0",
+    "sharp": "^0.35.5"
   }
 }

@@ -1,49 +1,73 @@
 "use client";
-import { useState } from "react";
 
-function FacePlaceholder() {
-  return (
-    <svg className="face" viewBox="0 0 168 168" role="img" aria-label="Placeholder avatar — replace with your memoji at public/avatar.png">
-      <ellipse cx="84" cy="172" rx="54" ry="34" fill="#4a7d96" />
-      <ellipse cx="84" cy="170" rx="54" ry="34" fill="#54879e" />
-      <rect x="73" y="116" width="22" height="28" rx="9" fill="#eab88f" />
-      <circle cx="45" cy="94" r="9" fill="#f2c9a4" />
-      <circle cx="123" cy="94" r="9" fill="#f2c9a4" />
-      <rect x="44" y="50" width="80" height="74" rx="30" fill="#f2c9a4" />
-      <path d="M42 102 L42 84 Q42 44 84 42 Q126 44 126 84 L126 102 L116 102 L116 74 Q100 66 84 68 Q62 70 54 78 L52 102 Z" fill="#3a2a22" />
-      <rect x="60" y="84" width="19" height="5.5" rx="2.75" fill="#3a2a22" />
-      <rect x="89" y="84" width="19" height="5.5" rx="2.75" fill="#3a2a22" />
-      <circle cx="69.5" cy="97" r="5.5" fill="#23232a" />
-      <circle cx="98.5" cy="97" r="5.5" fill="#23232a" />
-      <circle cx="71.3" cy="95.4" r="1.8" fill="#fff" />
-      <circle cx="100.3" cy="95.4" r="1.8" fill="#fff" />
-      <path d="M84 100 Q82 108 77 111" stroke="#d89a6c" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      <path d="M71 117 Q84 128 97 117" stroke="#8a5a3b" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-    </svg>
-  );
+import { useEffect, useState } from "react";
+import { useVoice } from "./VoiceProvider";
+
+// Traced straight from the "Memoji pack" turnaround (scripts/trace-memoji.mjs).
+// Three front views are stacked:
+//
+//   base   eyes open, lips closed      (sheet4)
+//   mouth  eyes open, mouth open       (sheet2) — masked to the mouth
+//   eyes   eyes closed, lips closed    (sheet3) — masked to the eyes, for blinks
+//
+// Masking the overlays keeps the mouth and eyelids changing without the rest of
+// the render (which differs slightly between generations) ghosting through.
+
+const BASE = "/memoji/sheet4_emoji1.svg";
+const MOUTH = "/memoji/sheet2_emoji1.svg";
+const EYES = "/memoji/sheet3_emoji1.svg";
+
+// How far the open-mouth layer comes in for each viseme, and how the mouth is
+// squashed so the single open shape reads as different vowels.
+const OPEN = { rest: 0, MBP: 0, FV: 0.32, OU: 0.6, EI: 0.68, AE: 0.9 };
+const SQUASH = {
+  rest: "scale(1, 1)",
+  MBP: "scale(1, 1)",
+  FV: "scale(1.02, 0.74)",
+  OU: "scale(0.84, 0.96)",
+  EI: "scale(1.02, 0.88)",
+  AE: "scale(1, 1.04)",
+};
+
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
 }
 
 export default function Avatar() {
-  const [failed, setFailed] = useState(false);
-  const [ready, setReady] = useState(false);
-  if (failed) {
-    return (
-      <div className="avatar">
-        <FacePlaceholder />
-      </div>
-    );
-  }
+  const voice = useVoice();
+  const reduced = useReducedMotion();
+
+  // Under reduced motion the face stays still: audio still plays, only the
+  // decorative movement is dropped.
+  const speaking = Boolean(voice?.speaking) && !reduced;
+  const viseme = speaking ? voice.viseme : "rest";
+  const amplitude = speaking ? Math.max(0, Math.min(1, voice.amplitude || 0)) : 0;
+
+  const open = speaking ? Math.min(1, (OPEN[viseme] ?? 0) + amplitude * 0.16) : 0;
+  const squash = SQUASH[viseme] || SQUASH.rest;
+
   return (
-    <div className={ready ? "avatar" : "avatar is-loading"}>
-      <img
-        src="/avatar.png"
-        alt="Memoji avatar of the site owner"
-        fetchPriority="high"
-        ref={(el) => { if (el && el.complete && el.naturalWidth > 0) setReady(true); }}
-        onLoad={() => setReady(true)}
-        onError={() => setFailed(true)}
-        className={ready ? "is-ready" : ""}
-      />
+    <div className={`avatar${reduced ? " is-static" : ""}`}>
+      <div className="avatar-stage">
+        <img className="avatar-layer" src={BASE} alt="Illustrated avatar of Saurabh Kumar" draggable="false" />
+        <img
+          className="avatar-layer avatar-mouth"
+          src={MOUTH}
+          alt=""
+          aria-hidden="true"
+          draggable="false"
+          style={{ opacity: open, transform: squash }}
+        />
+        <img className="avatar-layer avatar-eyes" src={EYES} alt="" aria-hidden="true" draggable="false" />
+      </div>
     </div>
   );
 }
