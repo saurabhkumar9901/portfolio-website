@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useVoice } from "./VoiceProvider";
-import { firstPersonify } from "../lib/brain.js";
 
 const QUICK = [
   { label: "Me", q: "Tell me about yourself", icon: <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#0e9f6e" strokeWidth="1.8" /><circle cx="9" cy="10.5" r="1.2" fill="#0e9f6e" /><circle cx="15" cy="10.5" r="1.2" fill="#0e9f6e" /><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8" stroke="#0e9f6e" strokeWidth="1.8" strokeLinecap="round" /></svg> },
@@ -127,7 +126,7 @@ export default function ChatPanel({ initialQuestion }) {
       const ctype = r.headers.get("content-type") || "";
       if (!ctype.includes("text/event-stream")) {
         const data = await r.json();
-        const text = firstPersonify((data && data.text ? String(data.text) : "").trim()) || NET_FAIL;
+        const text = (data && data.text ? String(data.text) : "").trim() || NET_FAIL;
         const live = data && data.source === "adk";
         setTurns((t) => t.map((turn) => (
           turn.a ? turn : { ...turn, a: text, tag: live ? "Gemini" : "Quick answer", live, intent: data?.intent }
@@ -156,7 +155,7 @@ export default function ChatPanel({ initialQuestion }) {
               continue;
             }
             if (msg.delta) {
-              const d = firstPersonify(msg.delta);
+              const d = msg.delta;
               voice?.pushChunk(d);
               setTurns((t) => t.map((turn) => (turn.stream !== undefined && !turn.a ? { ...turn, stream: turn.stream + d } : turn)));
             } else if (msg.done && msg.text) {
@@ -167,7 +166,7 @@ export default function ChatPanel({ initialQuestion }) {
         }
         setTurns((t) => t.map((turn) => {
           if (turn.a || turn.stream === undefined) return turn;
-          if (turn.stream) return { ...turn, a: firstPersonify(turn.stream), tag: "Gemini", live: true };
+          if (turn.stream) return { ...turn, a: turn.stream, tag: "Gemini", live: true };
           return { ...turn, a: NET_FAIL, tag: "Offline", live: false };
         }));
         if (intent) voice?.playStatic(intent);
