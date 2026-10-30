@@ -208,7 +208,7 @@ export default function ChatPanel({ initialQuestion }) {
               <div className="bot-plain">
                 {!t.live && <span className="tag">{t.tag} - demo</span>}
                 <span dangerouslySetInnerHTML={{ __html: renderMd(t.a) }} />
-                {voice?.available && (
+                {voice && (
                   <button
                     type="button"
                     className="listen"
