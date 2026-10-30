@@ -134,7 +134,7 @@ a:hover { color: var(--accent-ink); }
 .avatar { width: 168px; height: 168px; margin: 26px auto 0; position: relative; }
 .avatar-stage {
   position: absolute; inset: 0;
-  filter: drop-shadow(0 10px 18px rgba(20,20,23,0.13));
+  filter: drop-shadow(0 10px 18px rgba(20,20,23,0.13)) blur(0.25px);
   transform-origin: 50% 50%;
   animation: avatar-breathe 6.4s ease-in-out infinite;
   transform: scale(1.18);
