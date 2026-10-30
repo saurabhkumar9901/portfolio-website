@@ -28,8 +28,51 @@ function clientIp(req) {
   return req.headers.get("x-real-ip") || "unknown";
 }
 
-export async function GET() {
-  return NextResponse.json({ enabled: Boolean(process.env.DEEPGRAM_API_KEY), voice: VOICE_MODEL });
+export async function GET(req) {
+  const url = new URL(req.url);
+  const textParam = url.searchParams.get("text");
+  if (!textParam) {
+    return NextResponse.json({ enabled: Boolean(process.env.DEEPGRAM_API_KEY), voice: VOICE_MODEL });
+  }
+  // Streaming synthesis via GET so the browser can play the response as it
+  // arrives (progressive MP3 playback) instead of buffering the whole file.
+  const key = process.env.DEEPGRAM_API_KEY;
+  if (!key) return NextResponse.json({ error: "voice disabled" }, { status: 503 });
+
+  const text = toSpeech(textParam);
+  if (!text) return NextResponse.json({ error: "empty text" }, { status: 400 });
+  if (text.length > MAX_CHARS) return NextResponse.json({ error: "text too long" }, { status: 413 });
+
+  if (!allowed(clientIp(req))) return NextResponse.json({ error: "rate limited" }, { status: 429 });
+
+  const upstreamUrl = new URL("https://api.deepgram.com/v1/speak");
+  upstreamUrl.searchParams.set("model", VOICE_MODEL);
+  upstreamUrl.searchParams.set("encoding", "mp3");
+  upstreamUrl.searchParams.set("speed", "1");
+
+  let upstream;
+  try {
+    upstream = await fetch(upstreamUrl, {
+      method: "POST",
+      headers: { Authorization: `Token ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+      signal: AbortSignal.timeout(15000),
+    });
+  } catch {
+    return NextResponse.json({ error: "upstream unreachable" }, { status: 502 });
+  }
+
+  if (!upstream.ok || !upstream.body) {
+    return NextResponse.json({ error: "synthesis failed" }, { status: 502 });
+  }
+
+  return new Response(upstream.body, {
+    headers: {
+      "Content-Type": "audio/mpeg",
+      "Cache-Control": "no-store",
+      "X-Voice": VOICE_MODEL,
+    },
+  });
 }
 
 export async function POST(req) {

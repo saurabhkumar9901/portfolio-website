@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { VoiceEngine, decode } from "../lib/audioQueue.js";
+import { VoiceEngine } from "../lib/audioQueue.js";
 import { createSplitter, splitAll, toSpeech } from "../lib/voice.js";
 
 const VoiceContext = createContext(null);
@@ -15,9 +15,6 @@ export function useVoice() {
 export function VoiceProvider({ children, initialAvailable = false }) {
   const [available, setAvailable] = useState(initialAvailable);
   const [blocked, setBlocked] = useState(false);
-  // Read the preference synchronously so the very first auto-asked question
-  // already knows whether to speak. The toggle only renders once `available`
-  // is known, so there is no hydration mismatch.
   const [enabled, setEnabled] = useState(() => {
     if (typeof window === "undefined") return false;
     try {
@@ -34,8 +31,6 @@ export function VoiceProvider({ children, initialAvailable = false }) {
   const splitterRef = useRef(null);
   const turnRef = useRef(0);
   const enabledRef = useRef(false);
-  const pendingRef = useRef([]);
-  const drainingRef = useRef(false);
 
   enabledRef.current = enabled;
 
@@ -53,8 +48,6 @@ export function VoiceProvider({ children, initialAvailable = false }) {
     return engineRef.current;
   }, []);
 
-  // If the server says voice is off, there is nothing to probe. Otherwise
-  // confirm the key is actually working before rendering the toggle.
   useEffect(() => {
     if (initialAvailable) return undefined;
     let alive = true;
@@ -79,7 +72,6 @@ export function VoiceProvider({ children, initialAvailable = false }) {
 
   const stop = useCallback(() => {
     turnRef.current += 1;
-    pendingRef.current = [];
     splitterRef.current = null;
     if (engineRef.current) engineRef.current.stop();
     setSpeaking(false);
@@ -100,65 +92,12 @@ export function VoiceProvider({ children, initialAvailable = false }) {
     else if (engineRef.current) engineRef.current.stop();
   }, [engine]);
 
-  /**
-   * Fetch one sentence and decode it. Requests start the moment a sentence is
-   * complete, so the network calls for later sentences overlap with playback
-   * of earlier ones; only the *enqueue* is serialised, which keeps the
-   * playhead in order.
-   */
-  const synthesize = useCallback((text) => {
-    const eng = engine();
-    return (async () => {
-      try {
-        const res = await fetch("/api/tts", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text }),
-        });
-        if (!res.ok) {
-          if (res.status === 429 || res.status === 503) setBlocked(true);
-          return null;
-        }
-        const bytes = await res.arrayBuffer();
-        if (!bytes.byteLength) return null;
-        return await decode(eng, bytes);
-      } catch {
-        return null;
-      }
-    })();
-  }, [engine]);
-
-  /** Play finished clips strictly in the order the sentences were written. */
-  const drain = useCallback(async (turn) => {
-    if (drainingRef.current) return;
-    drainingRef.current = true;
-    const eng = engine();
-    try {
-      while (pendingRef.current.length) {
-        if (turn !== turnRef.current) break;
-        const item = pendingRef.current.shift();
-        const buffer = await item.buffer;
-        if (turn !== turnRef.current) break;
-        if (!buffer) continue;
-        eng.enqueue(buffer, item.text);
-      }
-    } finally {
-      drainingRef.current = false;
-      // A turn that started while this drain was awaiting a fetch queued its
-      // own clips; hand them to a fresh drain instead of leaving them silent.
-      if (pendingRef.current.length && turn !== turnRef.current) drain(turnRef.current);
-    }
-  }, [engine]);
-
   const queue = useCallback((text) => {
-    // Sanitise here as well as on the server so the viseme timeline is laid
-    // over the same words the voice actually speaks.
     const spoken = toSpeech(text);
     if (!spoken) return;
-    const buffer = synthesize(spoken);
-    pendingRef.current.push({ text: spoken, buffer });
-    drain(turnRef.current);
-  }, [drain, synthesize]);
+    const eng = engine();
+    eng.enqueue(spoken);
+  }, [engine]);
 
   const beginTurn = useCallback(() => {
     stop();
@@ -180,7 +119,6 @@ export function VoiceProvider({ children, initialAvailable = false }) {
     for (const chunk of rest) queue(chunk);
   }, [queue]);
 
-  /** Play a committed demo clip by intent name. */
   const playStatic = useCallback(async (intent, { force = false } = {}) => {
     if (!intent || !available) return;
     if (!enabledRef.current) {
@@ -196,23 +134,10 @@ export function VoiceProvider({ children, initialAvailable = false }) {
     const eng = engine();
     eng.unlock();
     turnRef.current += 1;
-    const turn = turnRef.current;
-    pendingRef.current = [];
-    splitterRef.current = null;
     eng.stop();
-    try {
-      const res = await fetch(`/audio/${intent}.mp3`);
-      if (!res.ok) return;
-      const bytes = await res.arrayBuffer();
-      const buffer = await decode(eng, bytes);
-      if (turn !== turnRef.current) return;
-      eng.enqueue(buffer, "");
-    } catch {
-      /* no audio, no problem */
-    }
+    eng.playStatic(intent);
   }, [available, engine]);
 
-  /** Speak a whole finished answer (replay of a live answer). */
   const speakText = useCallback(async (text, { force = false } = {}) => {
     if (!text || !available) return;
     if (!enabledRef.current) {
@@ -228,16 +153,10 @@ export function VoiceProvider({ children, initialAvailable = false }) {
     const eng = engine();
     eng.unlock();
     turnRef.current += 1;
-    const turn = turnRef.current;
-    pendingRef.current = [];
-    splitterRef.current = null;
     eng.stop();
     const chunks = splitAll(text);
-    for (const chunk of chunks) {
-      pendingRef.current.push({ text: chunk, buffer: synthesize(chunk) });
-    }
-    drain(turn);
-  }, [available, drain, engine, synthesize]);
+    for (const chunk of chunks) queue(chunk);
+  }, [available, engine, queue]);
 
   const value = useMemo(
     () => ({
